@@ -125,3 +125,10 @@
 |  cal -3  |  显示前一个月，当前月以及下一个月的月历  |
 |  cal 10 1988  |  显示指定月，年的月历  |
 |  date –date ‘1970-01-01 UTC 1427888888 seconds’  |  把一相对于1970-01-01 00:00的秒数转换成时间  |
+
+## 简化命令
+~~~
+vi ~/.bash_profile
+alias php=/usr/local/php/bin/php
+source ~/.bash_profile
+~~~
