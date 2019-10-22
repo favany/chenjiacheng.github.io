@@ -1,9 +1,3 @@
----
-layout: post
-title: "快捷键"
-author: "Jason"
----
-
 ## 选择类
 |  快捷键  |  说明  |
 | -- | -- |

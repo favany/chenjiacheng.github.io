@@ -8,9 +8,9 @@ google_analytics: UA—XXXXXXXX-X
 
 # Author
 author:
-  name:         Chester How
-  url:          https://chester.how
-  email:        chesterhow@gmail.com
+  name:         "Jason"
+  url:          "https://chenjiacheng.github.io"
+  email:        "405339556@qq.com"
 
 # Build settings
 markdown:       kramdown
