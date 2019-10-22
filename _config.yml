@@ -1,6 +1,5 @@
 # Site settings
 title:          Jason
-description:    "Minimal Jekyll theme for storytellers"
 baseurl:        "/"
 url:            "https://chenjiacheng.github.io"
 
@@ -33,6 +32,3 @@ plugins:
 # Permalinks
 permalink:      /:year-:month-:day/:title
 paginate:       10
-
-# Excludes
-exclude: [ Gemfile, Gemfile.lock, tale.gemspec ]
