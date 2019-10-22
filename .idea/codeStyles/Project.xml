@@ -1,0 +1,13 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <CssCodeStyleSettings>
+      <option name="BLANK_LINES_BETWEEN_BLOCKS" value="0" />
+      <option name="KEEP_SINGLE_LINE_BLOCKS" value="true" />
+      <option name="SPACE_BEFORE_OPENING_BRACE" value="false" />
+    </CssCodeStyleSettings>
+    <PHPCodeStyleSettings>
+      <option name="ALIGN_KEY_VALUE_PAIRS" value="true" />
+      <option name="ALIGN_ASSIGNMENTS" value="true" />
+    </PHPCodeStyleSettings>
+  </code_scheme>
+</component>
