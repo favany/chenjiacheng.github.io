@@ -1,5 +1,5 @@
 ---
-title:  "CentOS7常用命令"
+title:  "CentOS7 常用命令"
 ---
 
 ## 文件与目录操作
