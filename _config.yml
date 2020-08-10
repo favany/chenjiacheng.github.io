@@ -1,15 +1,15 @@
 # Site settings
-title:          "灼灼其华"
+title:          "Jasonpsr"
 baseurl:        "/"
-url:            "https://chenjiacheng.github.io"
+url:            "https://jasonpsr.github.io"
 
 # Google Analytics
 google_analytics: UA—XXXXXXXX-X
 
 # Author
 author:
-  name:         "Jason"
-  url:          "https://chenjiacheng.github.io"
+  name:         "Jasonpsr"
+  url:          "https://jasonpsr.github.io"
   email:        "405339556@qq.com"
 
 # Build settings
