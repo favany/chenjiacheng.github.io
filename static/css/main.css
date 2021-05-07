@@ -1,0 +1,21 @@
+html{background: #fff;color: #333;font-size: 14px;}
+blockquote, h1, h2, h3, h4, h5, li, ol, p, ul{padding: 0;margin: 0}
+ol, ul{list-style: none}
+a{color: inherit;text-decoration: none}
+a:hover{text-decoration: underline}
+body{max-width: 800px;padding: 0;margin: 0 auto}
+header{height: 120px;border-bottom: 1px solid #efefef;margin-bottom: 10px}
+header h1{font-size: 32px;padding: 20px 0}
+header nav a{font-size: 16px;margin-right: 10px}
+.post-container h2{font-size: 16px;padding: 10px 0}
+.post-list{box-sizing: border-box}
+.post-list li{display: flex;align-items: center;padding: 10px 0}
+.post-list li .date{flex-shrink: 0;color: #666;margin-right: 10px}
+.post-list li .title{width: 0;flex-grow: 1;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 14px}
+.post-list li .categories{flex-shrink: 0;margin-left: 10px;font-size: 12px;color: #666}
+
+.post-detail h2{font-size: 18px;color: #666666;padding: 10px 0}
+.post-detail .post-info{color: #999999}
+.post-detail .post-content-wrapper{padding: 10px 0}
+
+footer{padding: 10px 0;color: #666666}

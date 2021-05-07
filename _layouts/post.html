@@ -1,9 +1,9 @@
 ---
 layout: default
 ---
-<div class="post">
+<div class="post-detail">
+    <h2>{{ page.title }}</h2>
     <div class="post-info">
-        <span>Written by</span>
         {% if page.author %}
         {{ page.author }}
         {% else %}
@@ -11,21 +11,8 @@ layout: default
         {% endif %}
 
         {% if page.date %}
-        <br>
-        <span>on&nbsp;</span>
-        <time datetime="{{ page.date }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+        于 {{ page.date | date: "%Y-%m-%d" }} 发布
         {% endif %}
     </div>
-    <h1 class="post-title">{{ page.title }}</h1>
-    <div class="post-line"></div>
-    {{ content }}
-</div>
-<div class="pagination">
-    {% if page.next.url %}
-    <a href="{{ page.next.url | prepend: site.baseurl }}" class="left arrow">&#8592;</a>
-    {% endif %}
-    {% if page.previous.url %}
-    <a href="{{ page.previous.url | prepend: site.baseurl }}" class="right arrow">&#8594;</a>
-    {% endif %}
-    <a href="#" class="top">Top</a>
+    <div class="post-content-wrapper">{{ content }}</div>
 </div>
