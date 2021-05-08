@@ -1,4 +1,5 @@
 ---
+layout: post
 title:  "CentOS7 常用命令"
 ---
 

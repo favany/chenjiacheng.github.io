@@ -1,5 +1,7 @@
 ---
+layout: post
 title:  "Submit Text3 快捷键"
+categories: [编辑器]
 ---
 
 ## 选择类
