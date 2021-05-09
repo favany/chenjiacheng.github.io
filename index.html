@@ -12,7 +12,7 @@ layout: default
     <ul class="post-list">
         {%- endif %}
         <li>
-            <span class="date">{{ post.date | date: "%Y/%m/%d" }}</span>
+            <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
             <a href="{{ post.url }}" class="title">{{ post.title }}</a>
             {% for categorie in post.categories -%}
             <a href="/categories#{{ categorie }}" class="categories">{{ categorie }}</a>

@@ -5,6 +5,7 @@ categories: [编辑器]
 ---
 
 ## 选择类
+
 |  快捷键  |  说明  |
 | -- | -- |
 |  Ctrl + D  |  选中光标所占的文本，继续操作则会选中下一个相同的文本  |
@@ -26,6 +27,7 @@ categories: [编辑器]
 |  Ctrl + Shift + ↑/↓  |  移动当前行  |
 
 ## 编辑类
+
 |  快捷键  |  说明  |
 | -- | -- |
 |  Ctrl + J  |  合并选中的多行代码为一行  |
@@ -46,6 +48,7 @@ categories: [编辑器]
 |  F6  |  单词检测拼写  |
 
 ## 搜索类
+
 |  快捷键  |  说明  |
 | -- | -- |
 |  Ctrl + F  |  打开底部搜索框，查找关键字  |
@@ -76,6 +79,7 @@ categories: [编辑器]
 |  Esc  |  退出光标多行选择，退出搜索框，命令框等  |
 
 ## 显示类
+
 |  快捷键  |  说明  |
 | -- | -- |
 |  Ctrl + Tab  |  按文件浏览过的顺序，切换当前窗口的标签页。  |
@@ -100,6 +104,7 @@ categories: [编辑器]
 |  Alt  |  调出菜单  |
 
 ## 常用配置
+
 ~~~
 {
 	"expand_tabs_on_save": true,
@@ -126,6 +131,7 @@ categories: [编辑器]
 ~~~
 
 ## 配置说明
+
 ~~~
 "font_face": "YaHei Consolas Hybrid",       // 设置Sans-serif（无衬线）等宽字体，以便阅读
 "font_size": 12,                            // 设置字体大小
@@ -143,6 +149,7 @@ categories: [编辑器]
 ~~~
 
 ## 安装插件
+
 ~~~
 // Ctrl + `调出控制台，输入以下代码
 import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())
