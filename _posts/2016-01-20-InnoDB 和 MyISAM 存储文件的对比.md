@@ -1,6 +1,6 @@
 ---
 layout: post
-title: MySQL 存储引擎 InnoDB 和 MyISAM 存储文件的对比
+title: InnoDB 和 MyISAM 存储文件的对比
 categories: MySQL
 taps: MySQL,存储引擎
 ---
