@@ -4,4 +4,17 @@ layout: default
 title: 笔记
 ---
 
-<iframe id="embed_dom" name="embed_dom" frameborder="0" style="display:block;width:100%; height:1000px;" src="https://www.processon.com/embed/609f485c7d9c0830243d41a6"></iframe>
+<style>
+    body{overflow: hidden}
+</style>
+
+<iframe id="iframe" frameborder="0" width="100%"></iframe>
+
+<script>
+    window.onload = function () {
+        $(window).resize(function () {
+            $('#iframe').attr('height', $(window).height() - $('.navbar').height() + 'px');
+            $('#iframe').attr('src', 'https://www.processon.com/embed/609f485c7d9c0830243d41a6');
+        }).resize();
+    }
+</script>
