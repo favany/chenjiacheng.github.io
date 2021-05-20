@@ -1,4 +1,5 @@
 body{padding-top: 50px;}
+pre code{white-space: inherit;}
 .hljs{background: none;}
 
 /*post page*/
