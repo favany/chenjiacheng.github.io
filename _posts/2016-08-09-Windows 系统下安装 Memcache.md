@@ -1,0 +1,46 @@
+---
+layout: post
+title: Windows 系统下安装 Memcache
+categories: Memcache
+taps: Memcache
+---
+
+**方式一：直接使用，无需安装。（在开发时推荐使用）**
+
+把软件拷贝到指定位置，一般和其他的安装软件（比如apache等）在同级目录下面，主要是便于管理。
+
+![01.png](/static/images/2016/08/09/01.png)
+
+以cmd的方式，运行memcache
+
+![02.png](/static/images/2016/08/09/02.png)
+
+![03.png](/static/images/2016/08/09/03.png)
+
+启动后，该窗口不要关闭，一旦关闭，则服务就停止了。
+
+![04.png](/static/images/2016/08/09/04.png)
+
+**方式二：把 memcahce安装成window的一个服务。（在生产环境中推荐使用）**
+
+通过查看memcached的帮助。
+
+![05.png](/static/images/2016/08/09/05.png)
+
+注意：在把memcache安装成window的一个服务时，要以管理员的方式启动cmd。
+
+![06.png](/static/images/2016/08/09/06.png)
+
+查看服务是否安装成功
+
+![07.png](/static/images/2016/08/09/07.png)
+
+安装可能失败的原因：
+
+1. 如果你是用win7,win8系统，他对安全性要求高，因此，需要大家使用管理员的身份来安装和启动. 具体是 程序开始=>所有程序=>附件=>cmd(单击右键，选择以管理员的身份来执行)。
+
+2. 存放memcache.exe目录不要有中文或者特殊字符。
+
+3. 安装成功，但是启动会报告一个错误信息，提示缺少xx.dll，你可以从别的机器拷贝该dll文件，然后放入到system32下即可。
+
+如果上面三个方法都不可以，你可以直接这样启动cmd>memcached.exe -p 端口（这种方式不能关闭窗口）
