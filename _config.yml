@@ -58,3 +58,6 @@ include:
   - _pages
 
 permalink: /:year/:month/:day/:title
+
+paginate: 15
+paginate_path: "/page/:num/"

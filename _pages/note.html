@@ -11,10 +11,14 @@ title: 笔记
 <iframe id="iframe" frameborder="0" width="100%"></iframe>
 
 <script>
+    var url = window.location.href;
+    var site = url.lastIndexOf("\/");
+    var embed = url.substring(site + 1, url.length);
+
     window.onload = function () {
         $(window).resize(function () {
             $('#iframe').attr('height', $(window).height() - $('.navbar').height() + 'px');
-            $('#iframe').attr('src', 'https://www.processon.com/embed/609f485c7d9c0830243d41a6');
+            $('#iframe').attr('src', 'https://www.processon.com/embed/' + embed);
         }).resize();
     }
 </script>

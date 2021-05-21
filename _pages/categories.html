@@ -4,22 +4,32 @@ layout: default
 title: 归档
 ---
 
-<div class="container">
-    {%- for category in site.categories %}
-    <a href="javascript:document.getElementById('{{ category[0] }}').scrollIntoView()">{{ category[0] }}</a>
-    {%- endfor %}
-
-    <div class="post-container">
-        {%- for category in site.categories %}
-        <h2 id="{{ category[0] }}">{{ category[0] }}</h2>
-        <ul class="post-list">
-            {%- for post in category[1] %}
-            <li>
-                <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
-                <a href="{{ post.url }}" class="title">{{ post.title }}</a>
-            </li>
-            {%- endfor %}
-        </ul>
-        {%- endfor %}
+<div class="container" style="padding-top: 20px;">
+    <div class="row">
+        <div class="col-md-9">
+            {% for category in site.categories %}
+            <ul class="list-group">
+                <li class="list-group-item active" id="{{ category[0] }}">{{ category[0] }}</li>
+                {% for post in category[1] %}
+                <li class="list-group-item">
+                    <span class="text-muted">{{ post.date | date: "%Y-%m-%d" }}</span>
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+                    <span class="badge">{{ post.categories }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        </div>
+        <div class="col-md-3">
+            <ul class="list-group">
+                <li class="list-group-item active">分类</li>
+                {% for category in site.categories %}
+                <li class="list-group-item">
+                    <a href="/categories/#{{ category[0] }}">{{ category[0] }}</a>
+                    <span class="badge">{{ category[1].size }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </div>
