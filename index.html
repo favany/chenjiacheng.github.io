@@ -10,9 +10,9 @@ title: 首页
                 <li class="list-group-item active">所有</li>
                 {% for post in paginator.posts %}
                 <li class="list-group-item">
+                    <span class="badge">{{ post.categories }}</span>
                     <span class="text-muted">{{ post.date | date: "%Y-%m-%d" }}</span>
                     <a href="{{ post.url }}">{{ post.title }}</a>
-                    <span class="badge">{{ post.categories }}</span>
                 </li>
                 {% endfor %}
             </ul>
