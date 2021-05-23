@@ -11,11 +11,10 @@ title: 笔记
 <iframe id="iframe" frameborder="0" width="100%"></iframe>
 
 <script>
-    var url = window.location.href;
-    var site = url.lastIndexOf("\/");
-    var embed = url.substring(site + 1, url.length);
-
     window.onload = function () {
+        var url = window.location.href;
+        var site = url.lastIndexOf("\/");
+        var embed = url.substring(site + 1, url.length);
         $(window).resize(function () {
             $('#iframe').attr('height', $(window).height() - $('.navbar').height() + 'px');
             $('#iframe').attr('src', 'https://www.processon.com/embed/' + embed);
