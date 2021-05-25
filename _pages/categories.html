@@ -9,7 +9,7 @@ title: 归档
         <div class="col-md-9">
             {% for category in site.categories %}
             <ul class="list-group">
-                <li class="list-group-item active" id="{{ category[0] }}">{{ category[0] }}</li>
+                <li class="list-group-item" id="{{ category[0] }}"><strong>{{ category[0] }} ({{ category[1].size }})</strong></li>
                 {% for post in category[1] %}
                 <li class="list-group-item">
                     <span class="badge">{{ post.categories }}</span>
@@ -22,7 +22,7 @@ title: 归档
         </div>
         <div class="col-md-3">
             <ul class="list-group">
-                <li class="list-group-item active">分类</li>
+                <li class="list-group-item"><strong>分类</strong></li>
                 {% for category in site.categories %}
                 <li class="list-group-item">
                     <a href="/categories/#{{ category[0] }}">{{ category[0] }}</a>
@@ -33,3 +33,16 @@ title: 归档
         </div>
     </div>
 </div>
+
+<script>
+    window.onload = function () {
+        // 锚点定位偏移
+        $('.col-md-3 .list-group a').click(function () {
+            var target = $(this).attr('href');
+            $('html, body').animate({
+                scrollTop: $(target).offset().top - 70
+            }, 500);
+            return false;
+        });
+    }
+</script>
