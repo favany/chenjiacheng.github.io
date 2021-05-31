@@ -5,7 +5,9 @@ layout: default
 <div class="container post">
     <h1>{{ page.title }}</h1>
     <span class="text-muted">{{ page.date | date: "%Y-%m-%d" }}</span>
-    <a href="/categories/#{{ page.categories }}">{{ page.categories }}</a>
+    {% for category in page.categories %}
+    <a href="/archives#{{ category }}" class="badge">{{ category }}</a>
+    {% endfor %}
     <div class="row">
         <div class="col-md-9">
             <div class="post-content">

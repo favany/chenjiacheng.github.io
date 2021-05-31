@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ page.title }} - {{ site.title }}</title>
+    {%- if page.categories %}
+    <meta name="keywords" content="{{ site.keywords }}{% for category in page.categories %},{{ category }}{% endfor %}"/>
+    <meta name="description" content="{{ page.title }}"/>
+    {% else %}
+    <meta name="keywords" content="{{ site.keywords }}"/>
+    <meta name="description" content="{{ site.description }}"/>
+    {% endif -%}
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/styles/default.min.css">
     <link rel="stylesheet" href="/static/css/base.css">
@@ -23,7 +30,7 @@
 <script src="//cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
 <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.2/build/highlight.min.js"></script>
 <script>
-    $(function(){
+    $(function () {
         hljs.initHighlightingOnLoad();
         $('table').addClass('table table-bordered table-hover');
     });

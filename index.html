@@ -10,7 +10,9 @@ title: 首页
                 <li class="list-group-item"><strong>文章 ({{ paginator.total_posts }})</strong></li>
                 {% for post in paginator.posts %}
                 <li class="list-group-item">
-                    <span class="badge">{{ post.categories }}</span>
+                    {% for category in post.categories %}
+                    <a href="/archives#{{ category }}" class="badge">{{ category }}</a>
+                    {% endfor %}
                     <span class="text-muted">{{ post.date | date: "%Y-%m-%d" }}</span>
                     <a href="{{ post.url }}">{{ post.title }}</a>
                 </li>
@@ -34,15 +36,15 @@ title: 首页
             </ul>
         </div>
         <div class="col-md-3">
-            <ul class="list-group">
-                <li class="list-group-item"><strong>分类</strong></li>
+            <div class="list-group">
+                <div class="list-group-item"><strong>分类</strong></div>
                 {% for category in site.categories %}
-                <li class="list-group-item">
-                    <a href="/categories/#{{ category[0] }}">{{ category[0] }}</a>
+                <a href="/archives#{{ category[0] }}" class="list-group-item">
                     <span class="badge">{{ category[1].size }}</span>
-                </li>
+                    {{ category[0] }}
+                </a>
                 {% endfor %}
-            </ul>
+            </div>
         </div>
     </div>
 </div>
