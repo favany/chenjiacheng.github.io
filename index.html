@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 首页
+slug: 首页
 ---
 
 <div class="container" style="padding-top: 20px;">
@@ -14,7 +14,7 @@ title: 首页
                     <a href="/archives#{{ category }}" class="badge">{{ category }}</a>
                     {% endfor %}
                     <span class="text-muted">{{ post.date | date: "%Y-%m-%d" }}</span>
-                    <a href="{{ post.url }}">{{ post.title }}</a>
+                    <a href="{{ post.url }}">{{ post.slug }}</a>
                 </li>
                 {% endfor %}
             </ul>

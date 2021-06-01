@@ -3,7 +3,7 @@ layout: default
 ---
 
 <div class="container post">
-    <h1>{{ page.title }}</h1>
+    <h1>{{ page.slug }}</h1>
     <span class="text-muted">{{ page.date | date: "%Y-%m-%d" }}</span>
     {% for category in page.categories %}
     <a href="/archives#{{ category }}" class="badge">{{ category }}</a>

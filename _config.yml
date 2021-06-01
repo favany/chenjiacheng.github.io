@@ -23,7 +23,7 @@ keywords: Jason
 description: Jason Blog
 
 baseurl: ""
-url: ""
+url: "https://jasonpsr.github.io"
 
 theme: minima
 plugins:
