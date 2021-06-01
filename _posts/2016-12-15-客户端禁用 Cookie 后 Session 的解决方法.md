@@ -1,6 +1,5 @@
 ---
 layout: post
-title: 客户端禁用 Cookie 后 Session 的解决方法
 categories: PHP
 ---
 
@@ -55,7 +54,7 @@ print_r($_SESSION); // Array ( [name] => jason )
 
 浏览器输出效果:
 
-![01.png](/static/images/2016/12/15/01.png)
+![01.png](/static/images/20161215/01.png)
 
 ## 自动 a 链接：通过修改 Session 默认的机制（PHP 配置文件 php.ini）
 
@@ -65,7 +64,7 @@ print_r($_SESSION); // Array ( [name] => jason )
 session.use_only_cookies = 1 改为 session.use_only_cookies = 0
 ```
 
-![02.png](/static/images/2016/12/15/02.png)
+![02.png](/static/images/20161215/02.png)
 
 ### 开启 URL 转换 sessionId 信息的配置
 
@@ -73,7 +72,7 @@ session.use_only_cookies = 1 改为 session.use_only_cookies = 0
 session.use_trans_sid = 0 改为 session.use_trans_sid = 1
 ```
 
-![03.png](/static/images/2016/12/15/03.png)
+![03.png](/static/images/20161215/03.png)
 
 以上修改完了之后: 系统会自动在 a 标签中加入 `sessionId` 信息, 而且还能在获取 Session 数据界面自动的从 a 标签去获取 `sessionId` 信息
 
@@ -92,7 +91,7 @@ $_SESSION['name'] = 'jason';
 echo "<a href='session.php'>点我</a>";
 ```
 
-![04.png](/static/images/2016/12/15/04.png)
+![04.png](/static/images/20161215/04.png)
 
 **效果2：Session 使用的时候，会自动的从 a 标签读取 Session 信息**
 
@@ -106,4 +105,4 @@ session_start(); // 不再从 Cookie 获取，也不会自动创建新的
 print_r($_SESSION); // Array ( [name] => jason )
 ```
 
-![05.png](/static/images/2016/12/15/05.png)
+![05.png](/static/images/20161215/05.png)

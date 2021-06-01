@@ -1,6 +1,5 @@
 ---
 layout: post
-title: Windows 系统下安装 Memcache
 categories: Memcache
 ---
 
@@ -8,31 +7,31 @@ categories: Memcache
 
 把软件拷贝到指定位置，一般和其他的安装软件（比如 Apache 等）在同级目录下面，主要是便于管理。
 
-![01.png](/static/images/2016/08/09/01.png)
+![01.png](/static/images/20160809/01.png)
 
 以 cmd 的方式，运行 Memcache
 
-![02.png](/static/images/2016/08/09/02.png)
+![02.png](/static/images/20160809/02.png)
 
-![03.png](/static/images/2016/08/09/03.png)
+![03.png](/static/images/20160809/03.png)
 
 启动后，该窗口不要关闭，一旦关闭，则服务就停止了。
 
-![04.png](/static/images/2016/08/09/04.png)
+![04.png](/static/images/20160809/04.png)
 
 **方式二：把 Memcache 安装成 Window 的一个服务。（在生产环境中推荐使用）**
 
 通过查看 Memcached 的帮助。
 
-![05.png](/static/images/2016/08/09/05.png)
+![05.png](/static/images/20160809/05.png)
 
 注意：在把 Memcache 安装成 Window 的一个服务时，要以管理员的方式启动 cmd。
 
-![06.png](/static/images/2016/08/09/06.png)
+![06.png](/static/images/20160809/06.png)
 
 查看服务是否安装成功
 
-![07.png](/static/images/2016/08/09/07.png)
+![07.png](/static/images/20160809/07.png)
 
 **安装可能失败的原因：**
 

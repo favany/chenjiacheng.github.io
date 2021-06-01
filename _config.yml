@@ -30,7 +30,7 @@ plugins:
   - jekyll-feed
 
 include:
-  - _pages
+  - pages
 
 permalink: /:year:month:day
 

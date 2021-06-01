@@ -1,6 +1,5 @@
 ---
 layout: post
-title:  Submit Text3 使用归类
 categories: 工具
 ---
 
