@@ -1,0 +1,25 @@
+---
+permalink: /message
+layout: default
+slug: 留言
+---
+
+<div class="container">
+    <div id="gitalk-container"></div>
+</div>
+
+<script>
+    window.onload = function () {
+        var gitalk = new Gitalk({
+            clientID: 'f956cf88a0b80b45cbfa',
+            clientSecret: '6ae46fc2497ed4a385194e975db2e12380e096c9',
+            repo: 'jasonpsr.github.io',
+            owner: 'jasonpsr',
+            admin: ['jasonpsr'],
+            id: location.pathname,
+            distractionFreeMode: false,
+            createIssueManually: true
+        })
+        gitalk.render('gitalk-container')
+    }
+</script>
