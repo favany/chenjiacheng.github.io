@@ -34,5 +34,5 @@ include:
 
 permalink: /:year:month:day
 
-paginate: 15
+paginate: 20
 paginate_path: "/page/:num/"
