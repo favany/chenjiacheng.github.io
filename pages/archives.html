@@ -3,38 +3,41 @@ permalink: /archives
 layout: default
 slug: 归档
 ---
-<div class="container" style="padding-top: 20px;">
-    <div class="row">
-        <div class="col-md-9">
-            {% for post in site.posts %}
-            {% assign post_year = post.date | date: '%Y' %}
-            {% assign post_next_year = post.next.date | date: '%Y' %}
-            {% assign post_previous_year = post.previous.date | date: '%Y' %}
-            {% if post_year != post_next_year %}
-            <ul class="list-group">
-                <li class="list-group-item"><strong>{{ post_year }}</strong></li>
+
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 bg-color">
+                {% for post in site.posts %}
+                {% assign post_year = post.date | date: '%Y' %}
+                {% assign post_next_year = post.next.date | date: '%Y' %}
+                {% assign post_previous_year = post.previous.date | date: '%Y' %}
+                {% if post_year != post_next_year %}
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>{{ post_year }}</strong></li>
+                    {% endif %}
+                    <li class="list-group-item">
+                        {% for category in post.categories %}
+                        <a href="/archives#{{ category }}" class="badge">{{ category }}</a>
+                        {% endfor %}
+                        <span class="text-muted">{{ post.date | date: "%Y-%m-%d" }}</span>
+                        <a href="{{ post.url }}">{{ post.slug }}</a>
+                    </li>
+                    {% if post_year != post_previous_year %}
+                </ul>
                 {% endif %}
-                <li class="list-group-item">
-                    {% for category in post.categories %}
-                    <a href="/archives#{{ category }}" class="badge">{{ category }}</a>
-                    {% endfor %}
-                    <span class="text-muted">{{ post.date | date: "%Y-%m-%d" }}</span>
-                    <a href="{{ post.url }}">{{ post.slug }}</a>
-                </li>
-                {% if post_year != post_previous_year %}
-            </ul>
-            {% endif %}
-            {% endfor %}
-        </div>
-        <div class="col-md-3">
-            <div class="list-group">
-                <div class="list-group-item"><strong>分类</strong></div>
-                {% for category in site.categories %}
-                <a href="#{{ category[0] }}" class="list-group-item">
-                    <span class="badge">{{ category[1].size }}</span>
-                    {{ category[0] }}
-                </a>
                 {% endfor %}
+            </div>
+            <div class="col-md-3">
+                <div class="list-group">
+                    <div class="list-group-item"><strong>分类</strong></div>
+                    {% for category in site.categories %}
+                    <a href="#{{ category[0] }}" class="list-group-item">
+                        <span class="badge">{{ category[1].size }}</span>
+                        {{ category[0] }}
+                    </a>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>

@@ -3,47 +3,49 @@ layout: default
 slug: 首页
 ---
 
-<div class="container" style="padding-top: 20px;">
-    <div class="row">
-        <div class="col-md-9">
-            <ul class="list-group">
-                <li class="list-group-item"><strong>文章 ({{ paginator.total_posts }})</strong></li>
-                {% for post in paginator.posts %}
-                <li class="list-group-item">
-                    {% for category in post.categories %}
-                    <a href="/archives#{{ category }}" class="badge">{{ category }}</a>
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 bg-color">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>文章 ({{ paginator.total_posts }})</strong></li>
+                    {% for post in paginator.posts %}
+                    <li class="list-group-item">
+                        {% for category in post.categories %}
+                        <a href="/archives#{{ category }}" class="badge">{{ category }}</a>
+                        {% endfor %}
+                        <span class="text-muted">{{ post.date | date: "%Y-%m-%d" }}</span>
+                        <a href="{{ post.url }}">{{ post.slug }}</a>
+                    </li>
                     {% endfor %}
-                    <span class="text-muted">{{ post.date | date: "%Y-%m-%d" }}</span>
-                    <a href="{{ post.url }}">{{ post.slug }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-            <ul class="pager">
-                {% if paginator.previous_page %}
-                <li>
-                    <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}">
-                        <span aria-hidden="true">&larr;</span>
+                </ul>
+                <ul class="pager">
+                    {% if paginator.previous_page %}
+                    <li>
+                        <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}">
+                            <span aria-hidden="true">&larr;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if paginator.next_page %}
+                    <li>
+                        <a href="{{ paginator.next_page_path | prepend: site.baseurl }}">
+                            <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <div class="list-group">
+                    <div class="list-group-item"><strong>分类</strong></div class="list-group-item">
+                    {% for category in site.categories %}
+                    <a href="/archives#{{ category[0] }}" class="list-group-item">
+                        <span class="badge">{{ category[1].size }}</span>
+                        {{ category[0] }}
                     </a>
-                </li>
-                {% endif %}
-                {% if paginator.next_page %}
-                <li>
-                    <a href="{{ paginator.next_page_path | prepend: site.baseurl }}">
-                        <span aria-hidden="true">&rarr;</span>
-                    </a>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
-        <div class="col-md-3">
-            <div class="list-group">
-                <div class="list-group-item"><strong>分类</strong></div>
-                {% for category in site.categories %}
-                <a href="/archives#{{ category[0] }}" class="list-group-item">
-                    <span class="badge">{{ category[1].size }}</span>
-                    {{ category[0] }}
-                </a>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>

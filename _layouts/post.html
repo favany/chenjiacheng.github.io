@@ -2,20 +2,22 @@
 layout: default
 ---
 
-<div class="container post">
-    <h1>{{ page.slug }}</h1>
-    <span class="text-muted">{{ page.date | date: "%Y-%m-%d" }}</span>
-    {% for category in page.categories %}
-    <a href="/archives#{{ category }}" class="badge">{{ category }}</a>
-    {% endfor %}
-    <div class="row">
-        <div class="col-md-9">
-            <div class="post-content">
-                {{ content }}
+<div class="main">
+    <div class="container post">
+        <div class="row">
+            <div class="col-md-9 bg-color">
+                <h1>{{ page.slug }}</h1>
+                <div class="post-info">
+                    <span class="text-muted">{{ page.date | date: "%Y-%m-%d" }}</span>
+                    {% for category in page.categories %}
+                    <a href="/archives#{{ category }}" class="badge">{{ category }}</a>
+                    {% endfor %}
+                </div>
+                <div class="post-content">{{ content }}</div>
+                <div id="gitalk-container"></div>
             </div>
-            <div id="gitalk-container"></div>
+            <div class="col-md-3 hidden-sm hidden-xs post-sidebar"></div>
         </div>
-        <div class="col-md-3 hidden-sm hidden-xs post-sidebar"></div>
     </div>
 </div>
 
