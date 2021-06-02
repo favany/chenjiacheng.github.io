@@ -6,7 +6,7 @@ footer{padding: 10px 0;}
 .navbar-default{background-color: #fff;}
 .main{margin-top: 15px;}
 .hljs{background: 0 0;}
-.bg-color{background-color: #fff;border-radius: 4px;padding: 0 20px;}
+.bg-color{background-color: #fff;border-radius: 4px;padding: 0 20px;border: 1px solid #fff;}
 .list-group-item{border: none;border-bottom: 1px solid #f2f2f2;margin-bottom: 0;}
 
 /* post page */

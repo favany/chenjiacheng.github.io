@@ -13,6 +13,26 @@ layout: default
                 {% endfor %}
                 <hr>
                 <div class="post-content">{{ content }}</div>
+                <ul class="list-unstyled">
+                    <li>
+                        <span class="text-muted">上一篇：</span>
+                        {% if page.previous.slug %}
+                        <a href="{{ page.previous.url }}">{{ page.previous.slug }}</a>
+                        {% else %}
+                        <span class="text-muted">无</span>
+                        {% endif %}
+
+                    </li>
+                    <li>
+                        <span class="text-muted">下一篇：</span>
+                        {% if page.next.slug %}
+                        <a href="{{ page.next.url }}">{{ page.next.slug }}</a>
+                        {% else %}
+                        <span class="text-muted">无</span>
+                        {% endif %}
+
+                    </li>
+                </ul>
                 <div id="gitalk-container"></div>
             </div>
             <div class="col-md-3 hidden-sm hidden-xs post-sidebar"></div>
@@ -52,7 +72,7 @@ layout: default
             clientSecret: '6ae46fc2497ed4a385194e975db2e12380e096c9',
             repo: 'jasonpsr.github.io',
             owner: 'jasonpsr',
-            admin: ['jasonpsr'],
+            admin: ['Jasonpsr'],
             id: location.pathname,
             distractionFreeMode: false,
             createIssueManually: true
