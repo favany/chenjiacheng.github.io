@@ -51,9 +51,13 @@ slug: 归档
 
             $('.col-md-9 ul').show();
             $('.col-md-9 ul li').show();
-            $('.col-md-9 .badge').each(function (index, item) {
-                if ($(item).text() !== hash) {
-                    $(item).parents('li').hide();
+            $('.col-md-9 ul li').each(function (index, item) {
+                var categories = [];
+                $(item).children('.badge').each(function (key, val) {
+                    categories.push($(val).text());
+                });
+                if (categories.length > 0 && categories.indexOf(hash) === -1) {
+                    $(item).hide();
                 }
             });
             $('.col-md-9 ul').each(function (index, item) {
