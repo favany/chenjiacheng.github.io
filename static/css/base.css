@@ -10,6 +10,14 @@ footer{padding: 10px 0;}
 .badge{background-color: #999;}
 .list-group-item{border: none;border-bottom: 1px solid #f2f2f2;margin-bottom: 0;}
 
+.sidebar{position: fixed;left: 0;top: 54px;bottom: 0;width: 280px;background-color: #ffffff;border-right: 1px solid #e7e7e7;}
+.sidebar-scroll{width: 280px;height: 100%;overflow-y: auto;}
+.sidebar-title{padding: 20px 20px 10px;font-size: 18px;}
+.sidebar-catalog-list .nav li a{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.sidebar-catalog-list .nav li a.active{background-color: #eee;color: #6190e8;}
+.sidebar-catalog-list .nav > li > a{padding: 4px 0 4px 20px;color: #767676;}
+.sidebar-catalog-list .nav .nav > li > a{padding: 2px 0 2px 35px;}
+
 /* post page */
 .post h1{font-weight: 400;font-size: 22px;}
 .post h2{font-weight: 700;font-size: 20px;}
@@ -19,6 +27,16 @@ footer{padding: 10px 0;}
 .post h6{font-weight: 700;font-size: 12px;}
 .post hr{margin-top: 15px;margin-bottom: 15px;}
 .post img{max-width: 100%;}
-.post .col-md-3{position: sticky;top: 69px;}
-.post-sidebar .nav > li > a{padding: 5px 10px;color: #767676;}
-.post-sidebar .nav .nav > li > a{padding: 5px 25px;}
+.post .post-sidebar{padding-top: 90px;}
+.post-catalog-title{padding: 4px 0;color: #767676;}
+.post-catalog-fixed{position: fixed;top: 69px;width: inherit;}
+.post-catalog-body{overflow: hidden;}
+.post-catalog-list{position: relative;}
+.post-catalog-list:before{content: "";position: absolute;top: 0;left: 7px;bottom: 0;width: 2px;background-color: #eee;opacity: .5;}
+.post-catalog-list .nav li a{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.post-catalog-list .nav li a.active{background-color: #eee;color: #6190e8;}
+.post-catalog-list .nav li a:before{content: "";position: absolute;top: 50%;background-color: currentColor;border-radius: 50%;left: 5px;margin-top: -3px;width: 6px;height: 6px;}
+.post-catalog-list .nav > li > a{padding: 4px 0 4px 20px;color: #767676;font-weight: 700;}
+.post-catalog-list .nav .nav > li > a{padding: 2px 0 2px 35px;font-weight: 400;}
+.post-catalog-list .nav .nav > li > a:before{left: 20px;width: 4px;height: 4px;}
+.read-progress{position: fixed;top: 0;left: 0;height: 3px;background-color: #6190e8;width: 0;z-index: 2048}

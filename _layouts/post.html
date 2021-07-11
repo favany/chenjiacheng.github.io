@@ -2,6 +2,7 @@
 layout: default
 ---
 
+<div class="read-progress"></div>
 <div class="main">
     <div class="container post">
         <div class="row">
@@ -36,7 +37,9 @@ layout: default
                 <div id="gitalk-container"></div>
             </div>
             <div class="col-md-3 hidden-sm hidden-xs">
-                <div class="post-sidebar"></div>
+                <div class="post-sidebar">
+                    <div class="post-catalog"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -44,32 +47,17 @@ layout: default
 
 <script>
     window.onload = function () {
-        var html = '<ul class="nav">';
-        $('.post-content h2, .post-content h3').each(function (index, item) {
-            $(this).attr('id', index);
+        buildPostCatalog();
+        changeCatalogProgress();
+        changeReadProgress();
 
-            if (item.tagName === 'H2') {
-                if (index !== 0) {
-                    html += '</ul></li>';
-                }
-                html += '<li><a href="#' + index + '">' + $(this).text() + '</a><ul class="nav">';
-            } else {
-                html += '<li><a href="#' + index + '">' + $(this).text() + '</a></li>';
-            }
-        });
-        html += '</ul>';
-        $('.post-sidebar').html(html);
-
-        // 锚点定位偏移
-        $('.post-sidebar a').click(function () {
-            var target = $(this).attr('href');
-            $('html, body').animate({
-                scrollTop: $(target).offset().top - 70
-            }, 500);
-            return false;
+        // 窗口滚动事件
+        $(window).scroll(function () {
+            changeCatalogProgress();
+            changeReadProgress();
         });
 
-        var gitalk = new Gitalk({
+        let gitalk = new Gitalk({
             clientID: 'f956cf88a0b80b45cbfa',
             clientSecret: '6ae46fc2497ed4a385194e975db2e12380e096c9',
             repo: 'jasonpsr.github.io',
@@ -81,4 +69,74 @@ layout: default
         })
         gitalk.render('gitalk-container')
     }
+
+    /**
+     * 创建文章目录
+     */
+    let buildPostCatalog = () => {
+        let postContentHeader = $('.post-content h2, .post-content h3');
+        let postCatalog = $('.post-catalog');
+        if (postContentHeader.length === 0) return;
+
+        // 创建目录列表
+        let html = '<div class="post-catalog-title">目录</div>';
+        html += '<div class="post-catalog-body">';
+        html += '<div class="post-catalog-list">';
+        html += '<ul class="nav">';
+        postContentHeader.each(function (index, item) {
+            if (item.tagName === 'H2') {
+                if (index !== 0) html += '</ul></li>';
+                html += '<li><a href="#' + $(this).attr('id') + '">' + $(this).text() + '</a><ul class="nav">';
+            } else {
+                html += '<li><a href="#' + $(this).attr('id') + '">' + $(this).text() + '</a></li>';
+            }
+        });
+        html += '</ul>';
+        html += '</div>';
+        html += '</div>';
+        postCatalog.html(html);
+
+        // 锚点定位偏移
+        $('.post-catalog-list a').click(function () {
+            let target = $(this).attr('href');
+            $('html, body').animate({
+                scrollTop: $(target).offset().top - 74
+            }, 200);
+        });
+    }
+
+    /**
+     * 改变目录进度
+     */
+    let changeCatalogProgress = () => {
+        let scrollTop = $(window).scrollTop();
+        let postHeader = $('.post-content h2, .post-content h3');
+        let postCatalog = $('.post-catalog');
+        let postCatalogList = $('.post-catalog-list');
+        if (scrollTop >= 90) {
+            postCatalog.addClass('post-catalog-fixed').width(postCatalog.parents('div').width());
+        } else {
+            postCatalog.removeClass('post-catalog-fixed');
+        }
+
+        for (let i = 0, k = postHeader.length; i < k; i++) {
+            if (scrollTop >= postHeader.eq(i).offset().top - 75) {
+                postCatalogList.find('a').removeClass('active').eq(i).addClass('active');
+            }
+        }
+    }
+
+    /**
+     * 改变阅读进度
+     */
+    let changeReadProgress = () => {
+        let readProgress = $('.read-progress');
+        let postContent = $('.post-content');
+        let postContentHeight = postContent.height() - window.innerHeight;
+        if (postContentHeight <= 0) return;
+        let readHeight = window.pageYOffset - postContent.offset().top;
+        let postProgress = readHeight / postContentHeight * 100;
+        if (postProgress >= 100) postProgress = 100;
+        readProgress.width(`${postProgress}%`);
+    };
 </script>
