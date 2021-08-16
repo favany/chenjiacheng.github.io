@@ -1,3 +1,9 @@
+---
+layout: post
+categories: Golang
+tags: [Go基础]
+---
+
 ## Redis下载
 
 官方网站：https://redis.io
