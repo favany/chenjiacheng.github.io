@@ -24,9 +24,9 @@ tags: [Go基础]
 
 > 如果 make 安装失败，则需要安装或升级 gcc
 
-**5. 如果 `make` 完成后继续执行 `make install`**
+**4. 如果 `make` 完成后继续执行 `make install`**
 
-**6. 安装成功后查看 Redis 默认安装目录：`/usr/local/bin`**
+**5. 安装成功后查看 Redis 默认安装目录：`/usr/local/bin`**
 
 ```bash
 [root@iZwz98zi7ua638a1dxozhyZ redis-6.0.6]# ls /usr/local/bin/
