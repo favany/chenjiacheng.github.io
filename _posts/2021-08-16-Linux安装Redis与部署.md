@@ -6,11 +6,11 @@ tags: [Go基础]
 
 ## Redis下载
 
-官方网站：https://redis.io
+官方网站：[https://redis.io](https://redis.io)
 
 ![01.png](/static/images/20210816/01.png)
 
-中文官方网站：http://www.redis.cn
+中文官方网站：[http://www.redis.cn](http://www.redis.cn)
 
 ![02.png](/static/images/20210816/02.png)
 
