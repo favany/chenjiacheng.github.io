@@ -36,7 +36,7 @@ jeprof            mcrypt        redis-check-rdb
 libmcrypt-config  mdecrypt      redis-cli
 ```
 
-Redis 目录文件说明：
+Redis 文件说明：
 
 | 文件名          | 描述                               |
 | --------------- | ---------------------------------- |
