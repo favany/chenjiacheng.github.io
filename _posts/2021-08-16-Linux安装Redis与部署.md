@@ -1,7 +1,7 @@
 ---
 layout: post
-categories: Golang
-tags: [Go基础]
+categories: Redis
+tags: [Redis]
 ---
 
 ## Redis下载
