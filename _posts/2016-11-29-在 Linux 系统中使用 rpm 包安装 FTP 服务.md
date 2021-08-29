@@ -1,6 +1,7 @@
 ---
 layout: post
 categories: Linux
+tags: [Linux]
 ---
 
 注意：rpm 包在 Linux 的安装光盘里面。

@@ -1,6 +1,7 @@
 ---
 layout: post
 categories: Memcache
+tags: [Memcache,开发环境]
 ---
 
 **方式一：直接使用，无需安装。（在开发时推荐使用）**

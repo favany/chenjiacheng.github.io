@@ -1,6 +1,7 @@
 ---
 layout: post
-categories: ThinkPHP
+categories: PHP
+tags: [PHP,ThinkPHP]
 ---
 
 hasOne 和 belongsTo 在模型中都是一对一关联，那么区别是什么呢？

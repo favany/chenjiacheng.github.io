@@ -1,6 +1,7 @@
 ---
 layout: post
 categories: PHP
+tags: [Cookie,Session]
 ---
 
 如果禁用 Cookie 理论上来讲，会影响 Session: **Session 基于 Cookie 实现**，Session 的 `SESSID` 利用 Cookie 保存。

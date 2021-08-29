@@ -1,6 +1,7 @@
 ---
 layout: post
-categories: Laravel
+categories: PHP
+tags: [PHP,Laravel]
 ---
 
 ## 创建 Eloquent 模型

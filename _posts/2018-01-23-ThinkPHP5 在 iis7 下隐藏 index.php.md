@@ -1,6 +1,7 @@
 ---
 layout: post
-categories: ThinkPHP
+categories: PHP
+tags: [PHP,ThinkPHP]
 ---
 
 在 IIS 的高版本下面可以配置 web.config，在中间添加 rewrite 节点

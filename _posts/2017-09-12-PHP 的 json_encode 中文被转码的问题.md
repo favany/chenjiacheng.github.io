@@ -1,6 +1,7 @@
 ---
 layout: post
 categories: PHP
+tags: [PHP]
 ---
 
 在 php5.2 中做 `json_encode` 的时候。中文会被 `unicode` 编码，php5.3 加入了 `options` 参数，5.4 以后才加入 `JSON_UNESCAPED_UNICODE` 这个参数，不需要做 `escape` 和 `unicode` 处理。 所以在5.4之前都需要对中文做个处理。 

@@ -1,6 +1,7 @@
 ---
 layout: post
-categories: Laravel
+categories: PHP
+tags: [PHP,Laravel,开发环境]
 ---
 
 ## 安装 VirtualBox
