@@ -1,0 +1,18 @@
+---
+permalink: /tags
+layout: default
+slug: 标签
+---
+
+<div class="page-header">
+    <h1>{{ page.slug }}<small>（{{ site.tags | size }}）</small></h1>
+</div>
+<div class="tags-list">
+    {% for tag in site.tags %}
+    {% if tag[1].size >= 20 %}{% assign style = "font-size: 28px;color: #666;" %}
+    {% elsif tag[1].size >= 10 %}{% assign style = "font-size: 24px;color: #999;" %}
+    {% elsif tag[1].size >= 5 %}{% assign style = "font-size: 20px;color: #aaa;" %}
+    {% else %}{% assign style = "font-size: 16px;color: #ccc;" %}{% endif %}
+    <a href="/?tag={{ tag[0] }}" style="{{ style }}">{{ tag[0] }}</a>
+    {% endfor %}
+</div>

@@ -1,0 +1,24 @@
+<div class="sidebar">
+    <div class="thumbnail">
+        <img src="/static/images/avatar.png" alt="avatar" class="avatar">
+        <div class="caption">
+            <p class="text-info"><a href="/about">Jason</a></p>
+            <p class="text-muted">这人很懒</p>
+            <div class="btn-group">
+                <a href="/" class="btn">
+                    <strong>{{ site.posts | size }}</strong>
+                    <span>日志</span>
+                </a>
+                <a href="/categories" class="btn">
+                    <strong>{{ site.categories | size }}</strong>
+                    <span>分类</span>
+                </a>
+                <a href="/tags" class="btn">
+                    <strong>{{ site.tags | size }}</strong>
+                    <span>标签</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="post-catalog hidden-sm hidden-xs"></div>

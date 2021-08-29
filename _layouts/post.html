@@ -3,46 +3,34 @@ layout: default
 ---
 
 <div class="read-progress"></div>
-<div class="main">
-    <div class="container post">
-        <div class="row">
-            <div class="col-md-9 bg-color">
-                <h1>{{ page.slug }}</h1>
-                <span class="text-muted">{{ page.date | date: "%Y-%m-%d" }}</span>
-                {% for category in page.categories %}
-                <a href="/archives#{{ category }}" class="badge">{{ category }}</a>
-                {% endfor %}
-                <hr>
-                <div class="post-content">{{ content }}</div>
-                <ul class="list-unstyled">
-                    <li>
-                        <span class="text-muted">上一篇：</span>
-                        {% if page.previous.slug %}
-                        <a href="{{ page.previous.url }}">{{ page.previous.slug }}</a>
-                        {% else %}
-                        <span class="text-muted">无</span>
-                        {% endif %}
-
-                    </li>
-                    <li>
-                        <span class="text-muted">下一篇：</span>
-                        {% if page.next.slug %}
-                        <a href="{{ page.next.url }}">{{ page.next.slug }}</a>
-                        {% else %}
-                        <span class="text-muted">无</span>
-                        {% endif %}
-
-                    </li>
-                </ul>
-                <div id="gitalk-container"></div>
-            </div>
-            <div class="col-md-3 hidden-sm hidden-xs">
-                <div class="post-sidebar">
-                    <div class="post-catalog"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="page-header">
+    <h1>{{ page.slug }}</h1>
+    <span class="post-date">Posted by Jason on {{ page.date | date: "%Y-%m-%d" }}</span>
+    {% for category in page.categories %}
+    <a href="/?category={{ category }}">{{ category }}</a>
+    {% endfor %}
+</div>
+<div class="post">
+    <div class="post-content">{{ content }}</div>
+    <ul class="list-unstyled">
+        <li>
+            <span class="text-muted">上一篇：</span>
+            {% if page.previous.slug %}
+            <a href="{{ page.previous.url }}">{{ page.previous.slug }}</a>
+            {% else %}
+            <span class="text-muted">无</span>
+            {% endif %}
+        </li>
+        <li>
+            <span class="text-muted">下一篇：</span>
+            {% if page.next.slug %}
+            <a href="{{ page.next.url }}">{{ page.next.slug }}</a>
+            {% else %}
+            <span class="text-muted">无</span>
+            {% endif %}
+        </li>
+    </ul>
+    <div id="gitalk-container"></div>
 </div>
 
 <script>
@@ -100,7 +88,7 @@ layout: default
         $('.post-catalog-list a').click(function () {
             let target = $(this).attr('href');
             $('html, body').animate({
-                scrollTop: $(target).offset().top - 74
+                scrollTop: $(target).offset().top - 20
             }, 200);
         });
     }
@@ -113,7 +101,7 @@ layout: default
         let postHeader = $('.post-content h2, .post-content h3');
         let postCatalog = $('.post-catalog');
         let postCatalogList = $('.post-catalog-list');
-        if (scrollTop >= 90) {
+        if (scrollTop >= $('.sidebar ').height()) {
             postCatalog.addClass('post-catalog-fixed').width(postCatalog.parents('div').width());
         } else {
             postCatalog.removeClass('post-catalog-fixed');

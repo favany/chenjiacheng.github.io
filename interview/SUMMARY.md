@@ -1,4 +1,0 @@
-# Summary
-
-* [ElasticSearch](ElasticSearch.md)
-

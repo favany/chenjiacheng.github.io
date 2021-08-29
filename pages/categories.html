@@ -1,0 +1,17 @@
+---
+permalink: /categories
+layout: default
+slug: 分类
+---
+
+<div class="page-header">
+    <h1>{{ page.slug }}<small>（{{ site.categories | size }}）</small></h1>
+</div>
+<ul class="categories-list">
+    {% for category in site.categories %}
+    <li>
+        <a href="/?category={{ category[0] }}">{{ category[0] }}</a>
+        <span>({{ category[1].size }})</span>
+    </li>
+    {% endfor %}
+</ul>
