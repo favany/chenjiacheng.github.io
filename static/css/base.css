@@ -23,8 +23,8 @@ blockquote{background-color: #f5f5f5;font-size: 14px;}
 .categories-list li a{color: #666;}
 .categories-list li span{color: #ccc;}
 
-.tags-list{padding: 40px 20px;}
-.tags-list a{text-decoration: underline;margin-right: 10px;}
+.tags-list{padding: 20px;}
+.tags-list a{text-decoration: underline;margin-right: 10px;line-height: 2;}
 
 /* post page */
 .post h1{font-weight: 400;font-size: 28px;}
