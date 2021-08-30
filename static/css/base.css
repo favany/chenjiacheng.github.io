@@ -24,7 +24,7 @@ blockquote{background-color: #f5f5f5;font-size: 14px;}
 .categories-list li span{color: #ccc;}
 
 .tags-list{padding: 20px;}
-.tags-list a{text-decoration: underline;margin-right: 10px;line-height: 2;}
+.tags-list a{text-decoration: underline;margin-right: 10px;line-height: 2;display: inline-block;}
 
 /* post page */
 .post h1{font-weight: 400;font-size: 28px;}
@@ -50,4 +50,6 @@ blockquote{background-color: #f5f5f5;font-size: 14px;}
 
 @media screen and (max-width: 768px){
     body{background-color: #fff;}
+
+    .content{padding: 0;}
 }
