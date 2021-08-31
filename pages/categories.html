@@ -10,7 +10,7 @@ slug: 分类
 <ul class="categories-list">
     {% for category in site.categories %}
     <li>
-        <a href="/?category={{ category[0] }}">{{ category[0] }}</a>
+        <a href="/categories/{{ category[0] }}">{{ category[0] }}</a>
         <span>({{ category[1].size }})</span>
     </li>
     {% endfor %}

@@ -12,7 +12,7 @@ layout: default
         <p class="text-muted">{{ post.content | strip_html | truncatewords: 10 }}</p>
         <p class="post-date">Posted by Jason on {{ post.date | date: "%Y-%m-%d" }}</p>
         {% for category in post.categories %}
-        <a class="btn btn-default btn-sm" href="/?category={{ category }}">{{ category }}</a>
+        <a class="btn btn-default btn-sm" href="/categories/{{ category }}">{{ category }}</a>
         {% endfor %}
     </li>
     {% endfor %}

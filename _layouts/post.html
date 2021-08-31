@@ -7,7 +7,7 @@ layout: default
     <h1>{{ page.slug }}</h1>
     <span class="post-date">Posted by Jason on {{ page.date | date: "%Y-%m-%d" }}</span>
     {% for category in page.categories %}
-    <a href="/?category={{ category }}">{{ category }}</a>
+    <a href="/categories/{{ category }}">{{ category }}</a>
     {% endfor %}
 </div>
 <div class="post">

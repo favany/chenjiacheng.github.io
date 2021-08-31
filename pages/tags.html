@@ -15,6 +15,6 @@ slug: 标签
     {% elsif tag[1].size >= 4 %}{% assign style = "font-size: 18px;color: #aaa;" %}
     {% elsif tag[1].size >= 2 %}{% assign style = "font-size: 16px;color: #bbb;" %}
     {% else %}{% assign style = "font-size: 14px;color: #ccc;" %}{% endif %}
-    <a href="/?tag={{ tag[0] }}" style="{{ style }}">{{ tag[0] }}</a>
+    <a href="/tags/{{ tag[0] }}" style="{{ style }}">{{ tag[0] }}</a>
     {% endfor %}
 </div>
