@@ -4,14 +4,44 @@ layout: default
 slug: 分类
 ---
 
-<div class="page-header">
-    <h1>{{ page.slug }}<small>（{{ site.categories | size }}）</small></h1>
+<div id="categories" class="hidden">
+    <div class="page-header">
+        <h1>{{ page.slug }}<small>（{{ site.categories | size }}）</small></h1>
+    </div>
+    <ul class="categories-list">
+        {% for category in site.categories %}
+        <li>
+            <a href="/categories/{{ category[0] }}">{{ category[0] }}</a>
+            <span>({{ category[1].size }})</span>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
-<ul class="categories-list">
-    {% for category in site.categories %}
-    <li>
-        <a href="/categories/{{ category[0] }}">{{ category[0] }}</a>
-        <span>({{ category[1].size }})</span>
-    </li>
-    {% endfor %}
-</ul>
+
+{% for category in site.categories %}
+<div id="{{ category[0] }}" class="hidden">
+    <div class="page-header">
+        <h1>{{ page.slug }}：{{ category[0] }}<small>（{{ category[1] | size }}）</small></h1>
+    </div>
+    <ul class="post-list list-group">
+        {% for post in category[1] %}
+        <li class="list-group-item">
+            <a href="{{ post.url }}"><h2>{{ post.slug }}</h2></a>
+            <p class="text-muted">{{ post.content | strip_html | truncatewords: 10 }}</p>
+            <p class="post-date">Posted by Jason on {{ post.date | date: "%Y-%m-%d" }}</p>
+            {% for category in post.categories %}
+            <a class="btn btn-default btn-sm" href="/categories/{{ category }}">{{ category }}</a>
+            {% endfor %}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endfor %}
+
+<script>
+    window.onload = function () {
+        let url = window.location.href;
+        let str = url.substr(url.lastIndexOf('/')).substring(1);
+        $('#' + decodeURI(str)).removeClass('hidden').addClass('show');
+    }
+</script>

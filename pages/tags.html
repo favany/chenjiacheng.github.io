@@ -4,17 +4,47 @@ layout: default
 slug: 标签
 ---
 
-<div class="page-header">
-    <h1>{{ page.slug }}<small>（{{ site.tags | size }}）</small></h1>
+<div id="tags" class="hidden">
+    <div class="page-header">
+        <h1>{{ page.slug }}<small>（{{ site.tags | size }}）</small></h1>
+    </div>
+    <div class="tags-list">
+        {% for tag in site.tags %}
+        {% if tag[1].size >= 32 %}{% assign style = "font-size: 28px;color: #333;" %}
+        {% elsif tag[1].size >= 16 %}{% assign style = "font-size: 24px;color: #666;" %}
+        {% elsif tag[1].size >= 8 %}{% assign style = "font-size: 20px;color: #999;" %}
+        {% elsif tag[1].size >= 4 %}{% assign style = "font-size: 18px;color: #aaa;" %}
+        {% elsif tag[1].size >= 2 %}{% assign style = "font-size: 16px;color: #bbb;" %}
+        {% else %}{% assign style = "font-size: 14px;color: #ccc;" %}{% endif %}
+        <a href="/tags/{{ tag[0] }}" style="{{ style }}">{{ tag[0] }}</a>
+        {% endfor %}
+    </div>
 </div>
-<div class="tags-list">
-    {% for tag in site.tags %}
-    {% if tag[1].size >= 32 %}{% assign style = "font-size: 28px;color: #333;" %}
-    {% elsif tag[1].size >= 16 %}{% assign style = "font-size: 24px;color: #666;" %}
-    {% elsif tag[1].size >= 8 %}{% assign style = "font-size: 20px;color: #999;" %}
-    {% elsif tag[1].size >= 4 %}{% assign style = "font-size: 18px;color: #aaa;" %}
-    {% elsif tag[1].size >= 2 %}{% assign style = "font-size: 16px;color: #bbb;" %}
-    {% else %}{% assign style = "font-size: 14px;color: #ccc;" %}{% endif %}
-    <a href="/tags/{{ tag[0] }}" style="{{ style }}">{{ tag[0] }}</a>
-    {% endfor %}
+
+{% for tag in site.tags %}
+<div id="{{ tag[0] }}" class="hidden">
+    <div class="page-header">
+        <h1>{{ page.slug }}：{{ tag[0] }}<small>（{{ tag[1] | size }}）</small></h1>
+    </div>
+    <ul class="post-list list-group">
+        {% for post in tag[1] %}
+        <li class="list-group-item">
+            <a href="{{ post.url }}"><h2>{{ post.slug }}</h2></a>
+            <p class="text-muted">{{ post.content | strip_html | truncatewords: 10 }}</p>
+            <p class="post-date">Posted by Jason on {{ post.date | date: "%Y-%m-%d" }}</p>
+            {% for category in post.categories %}
+            <a class="btn btn-default btn-sm" href="/categories/{{ category }}">{{ category }}</a>
+            {% endfor %}
+        </li>
+        {% endfor %}
+    </ul>
 </div>
+{% endfor %}
+
+<script>
+    window.onload = function () {
+        let url = window.location.href;
+        let str = url.substr(url.lastIndexOf('/')).substring(1);
+        $('#' + decodeURI(str)).removeClass('hidden').addClass('show');
+    }
+</script>
