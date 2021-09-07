@@ -42,6 +42,17 @@
     $(function () {
         hljs.initHighlightingOnLoad();
         $('table').addClass('table table-bordered table-hover');
+
+        let header = $('.header');
+        let sidebar = $('.sidebar');
+        let sidebarWidth = $('.sidebar').width();
+        $(window).scroll(function () {
+            if ($(window).scrollTop() >= header.height() + 20) {
+                sidebar.addClass('affix').width(sidebarWidth);
+            } else {
+                sidebar.removeClass('affix').width('auto');
+            }
+        });
     });
 </script>
 </body>

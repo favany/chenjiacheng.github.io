@@ -67,8 +67,7 @@ layout: default
         if (postContentHeader.length === 0) return;
 
         // 创建目录列表
-        let html = '<div class="post-catalog-title">目录</div>';
-        html += '<div class="post-catalog-body">';
+        let html = '<div class="post-catalog-body">';
         html += '<div class="post-catalog-list">';
         html += '<ul class="nav">';
         postContentHeader.each(function (index, item) {
@@ -99,14 +98,7 @@ layout: default
     let changeCatalogProgress = () => {
         let scrollTop = $(window).scrollTop();
         let postHeader = $('.post-content h2, .post-content h3');
-        let postCatalog = $('.post-catalog');
         let postCatalogList = $('.post-catalog-list');
-        if (scrollTop >= $('.sidebar ').height()) {
-            postCatalog.addClass('post-catalog-fixed').width(postCatalog.parents('div').width());
-        } else {
-            postCatalog.removeClass('post-catalog-fixed');
-        }
-
         for (let i = 0, k = postHeader.length; i < k; i++) {
             if (scrollTop >= postHeader.eq(i).offset().top - 75) {
                 postCatalogList.find('a').removeClass('active').eq(i).addClass('active');

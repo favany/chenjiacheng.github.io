@@ -32,6 +32,11 @@ plugins:
 include:
   - pages
 
+collections:
+  interview:
+    output: true
+    permalink: /interview/:path
+
 permalink: /:short_year:month:day
 
 paginate: 20

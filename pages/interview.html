@@ -1,0 +1,18 @@
+---
+permalink: /interview
+layout: default
+slug: 面试
+---
+
+<div id="interview">
+    <div class="page-header">
+        <h1>{{ page.slug }}<small>（{{ site.interview | size }}）</small></h1>
+    </div>
+    <ul class="categories-list">
+        {% for interview in site.interview %}
+        <li>
+            <a href="{{ interview.url }}">{{ interview.slug }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

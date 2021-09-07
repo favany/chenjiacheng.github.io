@@ -1,11 +1,21 @@
-body{background-color: #f8f8f8;font-size: 16px;}
+body{background-color: #f8f8f8;font-size: 16px;border-top: 3px solid #333;}
 pre code{white-space: inherit;}
 blockquote{background-color: #f5f5f5;font-size: 14px;}
 .hljs{background: 0 0;}
 .page-header{margin: 0;}
 .page-header h1{font-size: 28px;}
+.affix{position: fixed;top: 20px;width: inherit;}
+
+.header .jumbotron{margin-bottom: 0;border-radius: 0;background-color: #333;color: #fff;text-align: center;font-size: 20px;}
+.header .list-group .list-group-item{border: none;border-radius: 0;font-size: 14px;color: #666;}
+.header .list-group .list-group-item.active{background-color: #f5f5f5;}
+.header .list-group .list-group-item span{margin-right: 5px;}
 
 .sidebar{background-color: #fff;border: 1px solid #fff;}
+.sidebar .nav-tabs{border: none;text-align: center;padding-top: 10px;}
+.sidebar .nav-tabs li{border: none;float: inherit;display: inline-block;}
+.sidebar .nav-tabs li a{border: none;background: none;font-size: 14px;color: #666;}
+.sidebar .nav-tabs li.active a{border: none;color: #6190e8;}
 .sidebar .thumbnail{text-align: center;border: none;margin: 0;}
 .sidebar .thumbnail .avatar{padding: 20px 20px 0;}
 .sidebar .thumbnail .btn-group .btn{color: #999;}
@@ -35,8 +45,7 @@ blockquote{background-color: #f5f5f5;font-size: 14px;}
 .post h6{font-weight: 700;font-size: 12px;}
 .post hr{margin-top: 15px;margin-bottom: 15px;}
 .post img{max-width: 100%;display: block;margin: 0 auto;}
-.post-catalog-title{padding: 10px 0 4px;color: #767676;}
-.post-catalog-fixed{position: fixed;top: 0;width: inherit;}
+.post-catalog{padding: 10px;}
 .post-catalog-body{overflow: hidden;font-size: 14px;}
 .post-catalog-list{position: relative;}
 .post-catalog-list:before{content: "";position: absolute;top: 0;left: 7px;bottom: 0;width: 2px;background-color: #eee;opacity: .5;}
