@@ -9,6 +9,9 @@ layout: default
     {% for category in page.categories %}
     <a href="/categories/{{ category }}">{{ category }}</a>
     {% endfor %}
+    {% for tag in page.tags %}
+    <a href="/tags/{{ tag }}">{{ tag }}</a>
+    {% endfor %}
 </div>
 <div class="post">
     <div class="post-content">{{ content }}</div>
