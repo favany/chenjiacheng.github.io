@@ -27,10 +27,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
+            {% include header.html %}
             {% include sidebar.html %}
         </div>
         <div class="col-md-9">
             {% include content.html %}
+            {% include footer.html %}
         </div>
     </div>
 </div>
@@ -46,11 +48,15 @@
         let header = $('.header');
         let sidebar = $('.sidebar');
         let sidebarWidth = $('.sidebar').width();
+        let windowHeight = $(window).height();
+        $('.sidebar .tab-content').css('max-height', windowHeight - 96 - header.height());
         $(window).scroll(function () {
             if ($(window).scrollTop() >= header.height() + 20) {
                 sidebar.addClass('affix').width(sidebarWidth);
+                $('.sidebar .tab-content').css('max-height', windowHeight - 96);
             } else {
                 sidebar.removeClass('affix').width('auto');
+                $('.sidebar .tab-content').css('max-height', windowHeight - 96 - header.height());
             }
         });
     });

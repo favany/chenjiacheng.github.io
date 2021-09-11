@@ -1,26 +1,19 @@
-<div class="header">
-    <div class="jumbotron">Hello, world!</div>
-    <div class="list-group">
-        <a class="list-group-item" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> 首页</a>
-        <a class="list-group-item" href="/categories"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> 分类</a>
-        <a class="list-group-item" href="/tags"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> 标签</a>
-        <a class="list-group-item" href="/interview"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 面试</a>
-        <a class="list-group-item" href="/about"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 关于</a>
-    </div>
-</div>
 <div class="sidebar">
     {% if page.layout == 'post' %}
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#post-catalog" aria-controls="post-catalog" role="tab" data-toggle="tab">文章目录</a></li>
-        <li role="presentation"><a href="#thumbnail" aria-controls="thumbnail" role="tab" data-toggle="tab">站点概括</a></li>
+        <li role="presentation"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">站点概括</a></li>
     </ul>
+    {% endif %}
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="post-catalog">
+        <div role="tabpanel" class="tab-pane {% if page.layout == 'post' %}active{% endif %}" id="post-catalog">
             <div class="post-catalog hidden-sm hidden-xs"></div>
         </div>
-        <div role="tabpanel" class="tab-pane" id="thumbnail">
-            <div class="thumbnail">
-                <img src="/static/images/avatar.png" alt="avatar" class="avatar">
+        <div role="tabpanel" class="tab-pane {% if page.layout != 'post' %}active{% endif %}" id="overview">
+            <div class="overview">
+                <div class="thumbnail">
+                    <img src="/static/images/avatar.png" alt="avatar" class="avatar">
+                </div>
                 <div class="caption">
                     <p class="text-info"><a href="/about">Jason</a></p>
                     <p class="text-muted">这人很懒</p>
@@ -42,27 +35,4 @@
             </div>
         </div>
     </div>
-    {% else %}
-    <div class="thumbnail">
-        <img src="/static/images/avatar.png" alt="avatar" class="avatar">
-        <div class="caption">
-            <p class="text-info"><a href="/about">Jason</a></p>
-            <p class="text-muted">这人很懒</p>
-            <div class="btn-group">
-                <a href="/" class="btn">
-                    <strong>{{ site.posts | size }}</strong>
-                    <span>文章</span>
-                </a>
-                <a href="/categories" class="btn">
-                    <strong>{{ site.categories | size }}</strong>
-                    <span>分类</span>
-                </a>
-                <a href="/tags" class="btn">
-                    <strong>{{ site.tags | size }}</strong>
-                    <span>标签</span>
-                </a>
-            </div>
-        </div>
-    </div>
-    {% endif %}
 </div>
