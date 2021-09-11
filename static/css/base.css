@@ -87,7 +87,7 @@ blockquote{background-color: #f5f5f5;font-size: 14px;}
 
     .header .navbar .navbar-nav{float: none;margin: 0;}
 
-    .header .navbar .navbar-nav li{float: none;width: auto;}
+    .header .navbar .navbar-nav li{float: none;}
 
     .header .navbar .navbar-nav li a{padding: 10px 15px;color: #666;}
 
