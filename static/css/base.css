@@ -1,46 +1,43 @@
-body{background-color: #f8f8f8;font-size: 16px;border-top: 3px solid #333;}
+body{border-top: 3px solid #222;background-color: #f8f8f8;font-size: 16px;}
 pre code{white-space: inherit;}
 blockquote{background-color: #f5f5f5;font-size: 14px;}
 .hljs{background: 0 0;}
 .page-header{margin: 0;}
 .page-header h1{font-size: 28px;}
 .affix{position: fixed;top: 20px;width: inherit;}
-
-.header .jumbotron{margin-bottom: 0;border-radius: 0;background-color: #333;color: #fff;text-align: center;font-size: 20px;padding-top: 40px;padding-bottom: 40px;}
-.header .list-group .list-group-item{border: none;border-radius: 0;font-size: 14px;color: #666;}
-.header .list-group .list-group-item .glyphicon{margin-right: 5px;}
+.header .navbar{border: none;border-radius: 0;background-color: #333;}
+.header .navbar .navbar-header{float: none;padding: 40px 0;text-align: center;}
+.header .navbar .navbar-header .navbar-brand{float: none;margin-left: 0;color: #fff;font-size: 20px;}
+.header .navbar .navbar-collapse{padding: 0;background-color: #fff;}
+.header .navbar .navbar-nav{float: none;}
+.header .navbar .navbar-nav li{float: none;font-size: 14px;}
+.header .navbar .navbar-nav li a{padding: 10px 15px;color: #666;}
+.header .navbar .navbar-nav li a:hover{background-color: #f5f5f5;}
+.header .navbar .navbar-nav li a .glyphicon{margin-right: 5px;}
 .footer{padding: 10px 0;color: #999;}
-
-.sidebar{background-color: #fff;border: 1px solid #fff;}
-.sidebar .nav-tabs{border: none;text-align: center;padding-top: 10px;}
-.sidebar .nav-tabs li{border: none;float: inherit;display: inline-block;}
-.sidebar .nav-tabs li a{border: none;background: none;font-size: 14px;color: #666;}
+.sidebar{border: 1px solid #fff;background-color: #fff;}
+.sidebar .nav-tabs{padding-top: 10px;border: none;text-align: center;}
+.sidebar .nav-tabs li{float: inherit;display: inline-block;border: none;}
+.sidebar .nav-tabs li a{border: none;background: 0 0;color: #666;font-size: 14px;}
 .sidebar .nav-tabs li.active a{border: none;color: #6190e8;}
-.sidebar .overview{text-align: center;padding: 20px 0 10px;}
-.sidebar .overview .thumbnail{border: none;margin-bottom: 10px;padding: 0;}
+.sidebar .overview{padding: 20px 0 10px;text-align: center;}
+.sidebar .overview .thumbnail{margin-bottom: 10px;padding: 0 20px;border: none;}
 .sidebar .overview .btn-group .btn{color: #999;}
-.sidebar .overview .btn-group .btn:active{box-shadow: none}
+.sidebar .overview .btn-group .btn:active{box-shadow: none;}
 .sidebar .overview .btn-group .btn strong{display: block;font-size: 18px;}
 .sidebar .tab-content{overflow: auto;}
-.content{background-color: #fff;border: 1px solid #fff;padding: 0 20px;}
-
+.content{padding: 0 20px;border: 1px solid #fff;background-color: #fff;}
 .post-list .list-group-item{padding: 0 0 20px;border: none;border-bottom: 1px solid #eee;}
 .post-list .list-group-item h2{font-size: 20px;}
-.post-attr{font-size: 14px;color: #999;}
+.post-attr{color: #999;font-size: 14px;}
 .post-attr .glyphicon{font-size: 12px;}
 .post-attr a{color: #999;}
-
-/* categories page */
 .categories-list{padding: 20px 20px 10px;}
 .categories-list li{line-height: 30px;}
 .categories-list li a{color: #666;}
 .categories-list li span{color: #ccc;}
-
-/* tags page */
 .tags-list{padding: 20px;}
-.tags-list a{text-decoration: underline;margin-right: 10px;line-height: 2;display: inline-block;}
-
-/* post page */
+.tags-list a{display: inline-block;margin-right: 10px;text-decoration: underline;line-height: 2;}
 .post h1{font-size: 28px;}
 .post h2{font-size: 24px;}
 .post h3{font-size: 20px;}
@@ -48,21 +45,59 @@ blockquote{background-color: #f5f5f5;font-size: 14px;}
 .post h5{font-size: 14px;}
 .post h6{font-size: 12px;}
 .post hr{margin-top: 15px;margin-bottom: 15px;}
-.post img{max-width: 100%;display: block;margin: 0 auto;}
+.post img{display: block;margin: 0 auto;max-width: 100%;}
 .post-catalog{padding: 10px;}
 .post-catalog-body{font-size: 14px;}
 .post-catalog-list{position: relative;}
-.post-catalog-list:before{content: "";position: absolute;top: 0;left: 7px;bottom: 0;width: 2px;background-color: #eee;opacity: .5;}
+.post-catalog-list:before{position: absolute;top: 0;bottom: 0;left: 7px;width: 2px;background-color: #eee;content: "";opacity: .5;}
 .post-catalog-list .nav li a{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .post-catalog-list .nav li a.active{background-color: #eee;color: #6190e8;}
-.post-catalog-list .nav li a:before{content: "";position: absolute;top: 50%;background-color: currentColor;border-radius: 50%;left: 5px;margin-top: -3px;width: 6px;height: 6px;}
+.post-catalog-list .nav li a:before{position: absolute;top: 50%;left: 5px;margin-top: -3px;width: 6px;height: 6px;border-radius: 50%;background-color: currentColor;content: "";}
 .post-catalog-list .nav > li > a{padding: 4px 0 4px 20px;color: #767676;}
 .post-catalog-list .nav .nav > li > a{padding: 2px 0 2px 35px;}
 .post-catalog-list .nav .nav > li > a:before{left: 20px;width: 4px;height: 4px;}
-.read-progress{position: fixed;top: 0;left: 0;height: 3px;background-color: #6190e8;width: 0;z-index: 2048}
+.read-progress{position: fixed;top: 0;left: 0;z-index: 2048;width: 0;height: 3px;background-color: #6190e8;}
+
+@media screen and (max-width: 992px){
+    body{border: none;}
+
+    .header .navbar .navbar-header{float: left;padding: 0;}
+
+    .header .navbar .navbar-header .navbar-brand{float: left;margin-left: 0;color: #fff;font-size: 20px;}
+
+    .header .navbar .navbar-collapse{background: 0 0;}
+
+    .header .navbar .navbar-nav{float: left;}
+
+    .header .navbar .navbar-nav li{float: left;}
+
+    .header .navbar .navbar-nav li a{padding: 15px;color: #999;}
+
+    .header .navbar .navbar-nav li a:hover{background: 0 0;color: #fff;}
+}
 
 @media screen and (max-width: 768px){
-    body{background-color: #fff;}
+    .col-md-3{padding: 0;}
 
-    .content{padding: 0;}
+    .col-md-9{padding: 0;}
+
+    .header .navbar .navbar-header{float: none;}
+
+    .header .navbar .navbar-collapse{padding: 0;background-color: #fff;}
+
+    .header .navbar .navbar-nav{float: none;margin: 0;}
+
+    .header .navbar .navbar-nav li{float: none;width: auto;}
+
+    .header .navbar .navbar-nav li a{padding: 10px 15px;color: #666;}
+
+    .header .navbar .navbar-nav li a:hover{background-color: #f5f5f5;color: #666;}
+
+    .navbar-default .navbar-toggle{border-color: #444;}
+
+    .navbar-default .navbar-toggle .icon-bar{background-color: #fff;}
+
+    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{background: 0 0;}
+
+    .footer{padding: 10px;}
 }

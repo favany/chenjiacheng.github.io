@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div class="sidebar hidden-sm hidden-xs">
     {% if page.layout == 'post' %}
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#post-catalog" aria-controls="post-catalog" role="tab" data-toggle="tab">文章目录</a></li>
@@ -6,10 +6,10 @@
     </ul>
     {% endif %}
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane {% if page.layout == 'post' %}active{% endif %}" id="post-catalog">
-            <div class="post-catalog hidden-sm hidden-xs"></div>
+        <div role="tabpanel" class="tab-pane{% if page.layout == 'post' %} active{% endif %}" id="post-catalog">
+            <div class="post-catalog"></div>
         </div>
-        <div role="tabpanel" class="tab-pane {% if page.layout != 'post' %}active{% endif %}" id="overview">
+        <div role="tabpanel" class="tab-pane{% if page.layout != 'post' %} active{% endif %}" id="overview">
             <div class="overview">
                 <div class="thumbnail">
                     <img src="/static/images/avatar.png" alt="avatar" class="avatar">
