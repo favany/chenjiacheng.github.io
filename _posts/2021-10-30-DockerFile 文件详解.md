@@ -1,3 +1,9 @@
+---
+layout: post
+categories: Docker
+tags: [DockerFile]
+---
+
 ## 什么是 DockerFile
 
 DockerFile 是用来构建 Docker 镜像的构建文件，是由一系列命令和参数构成的脚本。
