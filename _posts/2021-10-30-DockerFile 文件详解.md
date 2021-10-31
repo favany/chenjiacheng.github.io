@@ -1,7 +1,7 @@
 ---
 layout: post
 categories: Docker
-tags: [DockerFile]
+tags: [Docker基础]
 ---
 
 ## 什么是 DockerFile
