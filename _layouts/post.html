@@ -89,9 +89,9 @@ layout: default
         postContentHeader.each(function (index, item) {
             if (item.tagName === 'H2') {
                 if (index !== 0) html += '</ul></li>';
-                html += '<li><a href="#' + $(this).attr('id') + '">' + $(this).text() + '</a><ul class="nav">';
+                html += '<li><a href="#' + $(this).attr('id') + '" title="' + $(this).text() + '">' + $(this).text() + '</a><ul class="nav">';
             } else {
-                html += '<li><a href="#' + $(this).attr('id') + '">' + $(this).text() + '</a></li>';
+                html += '<li><a href="#' + $(this).attr('id') + '" title="' + $(this).text() + '">' + $(this).text() + '</a></li>';
             }
         });
         html += '</ul>';

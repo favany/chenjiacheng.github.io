@@ -33,9 +33,9 @@ include:
   - pages
 
 collections:
-  interview:
+  qa:
     output: true
-    permalink: /interview/:path
+    permalink: /qa/:path
 
 permalink: /:short_year:month:day
 

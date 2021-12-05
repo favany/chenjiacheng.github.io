@@ -10,11 +10,21 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
-                <li><a href="/"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
-                <li><a href="/categories"><span class="glyphicon glyphicon-list"></span> 分类</a></li>
-                <li><a href="/tags"><span class="glyphicon glyphicon-tags"></span> 标签</a></li>
-                <li><a href="/interview"><span class="glyphicon glyphicon-book"></span> 面试</a></li>
-                <li><a href="/about"><span class="glyphicon glyphicon-user"></span> 关于</a></li>
+                <li class="{% if page.active == 'index' %}active{% endif %}">
+                    <a href="/"><span class="glyphicon glyphicon-home"></span> 首页</a>
+                </li>
+                <li class="{% if page.active == 'categories' %}active{% endif %}">
+                    <a href="/categories"><span class="glyphicon glyphicon-list"></span> 分类</a>
+                </li>
+                <li class="{% if page.active == 'tags' %}active{% endif %}">
+                    <a href="/tags"><span class="glyphicon glyphicon-tags"></span> 标签</a>
+                </li>
+                <li class="{% if page.active == 'qa' %}active{% endif %}">
+                    <a href="/qa"><span class="glyphicon glyphicon-question-sign"></span> 问答</a>
+                </li>
+                <li class="{% if page.active == 'about' %}active{% endif %}">
+                    <a href="/about"><span class="glyphicon glyphicon-user"></span> 关于</a>
+                </li>
             </ul>
         </div>
     </div>

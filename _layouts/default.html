@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% if page.slug %}{{ page.slug }} - {% endif %}{{ site.title }}</title>
     {% if page.categories %}
-    <meta name="keywords" content="{{ site.keywords }}{% for category in page.categories %},{{ category }}{% endfor %}"/>
+    <meta name="keywords"
+          content="{{ site.keywords }}{% for category in page.categories %},{{ category }}{% endfor %}"/>
     <meta name="description" content="{{ page.slug }}"/>
     {% else %}
     <meta name="keywords" content="{{ site.keywords }}"/>
@@ -45,18 +46,22 @@
         hljs.initHighlightingOnLoad();
         $('table').addClass('table table-bordered table-hover');
 
+        // 文章目录
         let header = $('.header');
         let sidebar = $('.sidebar');
-        let sidebarWidth = $('.sidebar').width();
-        let windowHeight = $(window).height();
-        $('.sidebar .tab-content').css('max-height', windowHeight - 96 - header.height());
+        let sidebarWidth = sidebar.width();
+        let sidebarNavHeight = sidebar.children('.nav').outerHeight(true);
+        let headerHeight = header.outerHeight(true);
+        let windowHeight = $(window).outerHeight(true);
+        sidebar.children('.tab-content').css('max-height', windowHeight - headerHeight - sidebarNavHeight);
         $(window).scroll(function () {
-            if ($(window).scrollTop() >= header.height() + 20) {
+            let windowScrollTop = $(window).scrollTop();
+            if (windowScrollTop >= headerHeight) {
                 sidebar.addClass('affix').width(sidebarWidth);
-                $('.sidebar .tab-content').css('max-height', windowHeight - 96);
+                sidebar.children('.tab-content').css('max-height', windowHeight - sidebarNavHeight);
             } else {
                 sidebar.removeClass('affix').width('auto');
-                $('.sidebar .tab-content').css('max-height', windowHeight - 96 - header.height());
+                sidebar.children('.tab-content').css('max-height', windowHeight - headerHeight - sidebarNavHeight + windowScrollTop);
             }
         });
     });
