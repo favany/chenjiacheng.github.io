@@ -86,12 +86,13 @@ layout: default
         let html = '<div class="post-catalog-body">';
         html += '<div class="post-catalog-list">';
         html += '<ul class="nav">';
+        let num = 1;
         postContentHeader.each(function (index, item) {
             if (item.tagName === 'H2') {
 
                 {% if page.path contains '_qa' %}
                 // H2标题增加序号
-                $(this).text((index + 1) + '. ' + $(this).text())
+                $(this).text(num++ + '. ' + $(this).text())
                 {% endif %}
 
                 if (index !== 0) html += '</ul></li>';

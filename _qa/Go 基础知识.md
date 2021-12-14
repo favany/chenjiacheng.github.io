@@ -273,7 +273,7 @@ Go 语言中，不要通过共享内存来通信，而要通过通信来实现�
 
 channel 中使用了 ring buffer(环形缓冲区) 来缓存写入的数据。ring buffer 有很多好处，而且非常适合用来实现 FIFO 式的固定长度队列。在 channel 中，ring buffer 的实现如下：
 
-![01](Go 基础知识.assets/01.png)
+![image-20211213223154791](Go 基础知识.assets/image-20211213223154791.png)
 
 hchan 中有两个与 buffer 相关的变量:recvx 和 sendx。其中 sendx 表示 buffer 中可写的 index，recvx 表示 buffer 中可读的 index。 从 recvx 到 sendx 之间的元素，表示已正常存放入 buffer 中的数据。我们可以直接使用 buf[recvx]来读取到队列的第一个元素，使用 buf[sendx] = x 来将元素放到队尾。
 
