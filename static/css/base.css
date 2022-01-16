@@ -54,6 +54,7 @@ blockquote{background-color: #f5f5f5;font-size: 14px;}
 .post h6{font-size: 12px;}
 .post hr{margin-top: 15px;margin-bottom: 15px;}
 .post img{display: block;margin: 0 auto;max-width: 100%;}
+.post-content{line-height: 2;}
 .post-catalog{padding: 10px;}
 .post-catalog-body{font-size: 14px;}
 .post-catalog-list{position: relative;}
