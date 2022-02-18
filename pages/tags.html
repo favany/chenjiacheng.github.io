@@ -60,6 +60,7 @@ slug: 标签
     window.onload = function () {
         let url = window.location.href;
         let str = url.substr(url.lastIndexOf('/')).substring(1);
+        if (str === '') str = 'tags';
         $('#' + decodeURI(str)).removeClass('hidden').addClass('show');
     }
 </script>

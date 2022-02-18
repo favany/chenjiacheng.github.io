@@ -57,6 +57,7 @@ slug: 分类
     window.onload = function () {
         let url = window.location.href;
         let str = url.substr(url.lastIndexOf('/')).substring(1);
+        if (str === '') str = 'categories';
         $('#' + decodeURI(str)).removeClass('hidden').addClass('show');
     }
 </script>
