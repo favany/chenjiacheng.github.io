@@ -12,11 +12,11 @@
         <div role="tabpanel" class="tab-pane{% if page.layout != 'post' %} active{% endif %}" id="overview">
             <div class="overview">
                 <div class="thumbnail">
-                    <img src="/static/images/avatar.png" alt="avatar" class="avatar">
+                    <img src="{{ site.avatar }}" alt="avatar" class="avatar">
                 </div>
                 <div class="caption">
-                    <div class="author"><a href="/about">Jason</a></div>
-                    <div class="description">这人很懒</div>
+                    <div class="author"><a href="/about">{{ site.author }}</a></div>
+                    <div class="description">{{ site.sign }}</div>
                     <div class="btn-group">
                         <a href="/" class="btn">
                             <strong>{{ site.posts | size }}</strong>

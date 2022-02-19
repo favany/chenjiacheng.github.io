@@ -18,14 +18,20 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Jason
-keywords: Jason
-description: Jason Blog
+theme: minima
 
 baseurl: ""
-url: "https://chenjiacheng.github.io"
+url: https://chenjiacheng.github.io
 
-theme: minima
+title: Jason's Blog
+subtitle: Love life and technology
+keywords: Jason's Blog
+description: Jason's Blog
+
+avatar: /static/images/avatar.png
+author: Jason
+sign: 这人很懒
+
 plugins:
   - jekyll-feed
 
@@ -37,7 +43,7 @@ collections:
     output: true
     permalink: /qa/:path
 
-permalink: /:short_year:month:day
+permalink: /posts/:short_year:month:day
 
 paginate: 20
-paginate_path: "/page/:num/"
+paginate_path: /page/:num
