@@ -5,62 +5,17 @@ layout: default
 slug: 标签
 ---
 
-<div id="tags" class="hidden">
-    <div class="page-header">
-        <h1>{{ page.slug }}<small>（{{ site.tags | size }}）</small></h1>
-    </div>
-    <div class="tags-list">
-        {% for tag in site.tags %}
-        {% if tag[1].size >= 32 %}{% assign style = "font-size: 28px;color: #333;" %}
-        {% elsif tag[1].size >= 16 %}{% assign style = "font-size: 24px;color: #666;" %}
-        {% elsif tag[1].size >= 8 %}{% assign style = "font-size: 20px;color: #999;" %}
-        {% elsif tag[1].size >= 4 %}{% assign style = "font-size: 18px;color: #aaa;" %}
-        {% elsif tag[1].size >= 2 %}{% assign style = "font-size: 16px;color: #bbb;" %}
-        {% else %}{% assign style = "font-size: 14px;color: #ccc;" %}{% endif %}
-        <a href="/tags/{{ tag[0] }}" style="{{ style }}">{{ tag[0] }}</a>
-        {% endfor %}
-    </div>
+<div class="page-header">
+    <h1>{{ page.slug }}<small>（{{ site.tags | size }}）</small></h1>
 </div>
-
-{% for tag in site.tags %}
-<div id="{{ tag[0] }}" class="hidden">
-    <div class="page-header">
-        <h1>{{ page.slug }}：{{ tag[0] }}<small>（{{ tag[1] | size }}）</small></h1>
-    </div>
-    <ul class="post-list list-group">
-        {% for post in tag[1] %}
-        <li class="list-group-item">
-            <h2><a href="{{ post.url }}">{{ post.slug }}</a></h2>
-            <p class="text-muted">{{ post.content | strip_html | truncatewords: 10 }}</p>
-            <ul class="post-attr list-inline">
-                <li>
-                    <span class="glyphicon glyphicon-time"></span>
-                    {{ post.date | date: "%Y-%m-%d" }}
-                </li>
-                <li>
-                    <span class="glyphicon glyphicon-list"></span>
-                    {% for category in post.categories %}
-                    <a href="/categories/{{ category }}">{{ category }}</a>
-                    {% endfor %}
-                </li>
-                <li>
-                    <span class="glyphicon glyphicon-tags"></span>
-                    {% for tag in post.tags %}
-                    <a href="/tags/{{ tag }}">{{ tag }}</a>
-                    {% endfor %}
-                </li>
-            </ul>
-        </li>
-        {% endfor %}
-    </ul>
+<div class="tags-list">
+    {% for tag in site.tags %}
+    {% if tag[1].size >= 32 %}{% assign style = "font-size: 28px;color: #333;" %}
+    {% elsif tag[1].size >= 16 %}{% assign style = "font-size: 24px;color: #666;" %}
+    {% elsif tag[1].size >= 8 %}{% assign style = "font-size: 20px;color: #999;" %}
+    {% elsif tag[1].size >= 4 %}{% assign style = "font-size: 18px;color: #aaa;" %}
+    {% elsif tag[1].size >= 2 %}{% assign style = "font-size: 16px;color: #bbb;" %}
+    {% else %}{% assign style = "font-size: 14px;color: #ccc;" %}{% endif %}
+    <a href="/tags/{{ tag[0] }}" style="{{ style }}">{{ tag[0] }}</a>
+    {% endfor %}
 </div>
-{% endfor %}
-
-<script>
-    window.onload = function () {
-        let url = window.location.href;
-        let str = url.substr(url.lastIndexOf('/')).substring(1);
-        if (str === '') str = 'tags';
-        $('#' + decodeURI(str)).removeClass('hidden').addClass('show');
-    }
-</script>

@@ -31,7 +31,6 @@ plugins:
 
 include:
   - pages
-  - jekyll-archives
 
 collections:
   qa:
@@ -42,12 +41,3 @@ permalink: /:short_year:month:day
 
 paginate: 20
 paginate_path: "/page/:num/"
-
-jekyll-archives:
-  enabled: [categories, tags]
-  layouts:
-    category: category
-    tag: tag
-  permalinks:
-    tag: /tags/:name/
-    category: /categories/:name/
