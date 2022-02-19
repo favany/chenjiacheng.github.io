@@ -8,8 +8,9 @@ blockquote{background-color: #f5f5f5;font-size: 14px;}
 .affix{position: fixed;top: 0;width: inherit;}
 .header{margin-bottom: 20px;}
 .header .navbar{border: none;border-radius: 0;background-color: #333;margin-bottom: 0;}
-.header .navbar .navbar-header{float: none;padding: 40px 0;text-align: center;}
-.header .navbar .navbar-header .navbar-brand{float: none;margin-left: 0;color: #fff;font-size: 20px;}
+.header .navbar .navbar-header{float: none;padding: 25px 0;text-align: center;}
+.header .navbar .navbar-header .navbar-brand{float: none;margin-left: 0;color: #fff;font-size: 24px;}
+.header .navbar .navbar-header .navbar-describe{float: none;margin-left: 0;color: #ccc;font-size: 14px;font-style: italic;}
 .header .navbar .navbar-collapse{padding: 10px 0;background-color: #fff;}
 .header .navbar .navbar-nav{float: none;}
 .header .navbar .navbar-nav li{float: none;font-size: 14px;}
@@ -81,6 +82,8 @@ blockquote{background-color: #f5f5f5;font-size: 14px;}
     .header .navbar .navbar-header{float: left;padding: 0;}
 
     .header .navbar .navbar-header .navbar-brand{float: left;margin-left: 0;color: #fff;font-size: 20px;}
+
+    .header .navbar .navbar-header .navbar-describe{display: none;}
 
     .header .navbar .navbar-collapse{background: 0 0;padding: 0;}
 

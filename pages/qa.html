@@ -5,13 +5,11 @@ layout: default
 slug: 问答
 ---
 
-<div id="qa">
-    <div class="page-header">
-        <h1>{{ page.slug }}<small>（{{ site.qa | size }}）</small></h1>
-    </div>
-    <ul class="categories-list">
-        {% for qa in site.qa %}
-        <li><a href="{{ qa.url }}">{{ qa.slug }}</a></li>
-        {% endfor %}
-    </ul>
+<div class="page-header">
+    <h1>{{ page.slug }}<small>（{{ site.qa | size }}）</small></h1>
 </div>
+<ul class="categories-list">
+    {% for qa in site.qa %}
+    <li><a href="{{ qa.url }}">{{ qa.slug }}</a></li>
+    {% endfor %}
+</ul>
