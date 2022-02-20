@@ -19,7 +19,7 @@ blockquote{background-color: #f5f5f5;font-size: 14px;}
 .header .navbar .navbar-nav li.active a:after{content: " ";position: absolute;top: 50%;margin-top: -3px;right: 15px;width: 6px;height: 6px;border-radius: 50%;background-color: #bbb;}
 .header .navbar .navbar-nav li a{padding: 10px 15px;color: #666;}
 .header .navbar .navbar-nav li a .glyphicon{margin-right: 5px;}
-.footer{padding: 10px 0;color: #999;}
+.footer{padding: 10px 0;color: #999;font-size: 14px;}
 .sidebar{border: 1px solid #fff;background-color: #fff;}
 .sidebar .nav-tabs{padding-top: 10px;border: none;text-align: center;}
 .sidebar .nav-tabs li{float: inherit;display: inline-block;border: none;}
@@ -79,9 +79,9 @@ blockquote{background-color: #f5f5f5;font-size: 14px;}
 @media screen and (max-width: 992px){
     body{border: none;}
 
-    .header .navbar .navbar-header{float: left;padding: 0;}
+    .header .navbar .navbar-header{float: left;padding: 0 0 0 20px;line-height: 50px;}
 
-    .header .navbar .navbar-header .site-title{float: left;margin-left: 0;color: #fff;font-size: 20px;}
+    .header .navbar .navbar-header .site-title{float: left;color: #fff;font-size: 20px;}
 
     .header .navbar .navbar-header .site-subtitle{display: none;}
 
