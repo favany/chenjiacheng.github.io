@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% if page.slug %}{{ page.slug }} - {% endif %}{{ site.title }}</title>
     {% if page.categories %}
-    <meta name="keywords"
-          content="{{ site.keywords }}{% for category in page.categories %},{{ category }}{% endfor %}"/>
+    <meta name="keywords" content="{{ site.keywords }}{% for category in page.categories %},{{ category }}{% endfor %}"/>
     <meta name="description" content="{{ page.slug }}"/>
     {% else %}
     <meta name="keywords" content="{{ site.keywords }}"/>
@@ -63,6 +62,18 @@
                 sidebar.removeClass('affix').width('auto');
                 sidebar.children('.tab-content').css('max-height', windowHeight - headerHeight - sidebarNavHeight + windowScrollTop);
             }
+
+            // 返回顶部控件
+            if (windowScrollTop > 0) {
+                $('.back-to-top').show();
+            } else {
+                $('.back-to-top').hide();
+            }
+        });
+
+        // 返回顶部事件
+        $('.back-to-top').click(function () {
+            $('html, body').animate({scrollTop: 0}, 200);
         });
     });
 </script>

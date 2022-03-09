@@ -3,9 +3,9 @@ layout: default
 ---
 
 <div class="read-progress"></div>
+{% if page.path contains '_post' %}
 <div class="page-header">
     <h1>{{ page.slug }}</h1>
-    {% if page.path contains '_post' %}
     <ul class="post-attr list-inline">
         <li>
             <span class="glyphicon glyphicon-time"></span>
@@ -24,8 +24,24 @@ layout: default
             {% endfor %}
         </li>
     </ul>
-    {% endif %}
 </div>
+{% endif %}
+
+{% if page.path contains '_qa' %}
+<div class="page-header">
+    <div class="btn-group">
+        <h1 class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            style="cursor:pointer;box-shadow: none;">{{ page.slug }} <span class="caret"></span></h1>
+        <ul class="dropdown-menu">
+            {% for qa in site.qa %}
+            <li {% if page.slug contains qa.slug %}class="active" {% endif %}><a href="{{ qa.url }}">{{ qa.slug }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endif %}
+
 <div class="post">
     <div class="post-content">{{ content }}</div>
     <ul class="list-unstyled">
@@ -86,15 +102,8 @@ layout: default
         let html = '<div class="post-catalog-body">';
         html += '<div class="post-catalog-list">';
         html += '<ul class="nav">';
-        let num = 1;
         postContentHeader.each(function (index, item) {
             if (item.tagName === 'H2') {
-
-                {% if page.path contains '_qa' %}
-                // H2标题增加序号
-                $(this).text(num++ + '. ' + $(this).text())
-                {% endif %}
-
                 if (index !== 0) html += '</ul></li>';
                 html += '<li><a href="#' + $(this).attr('id') + '" title="' + $(this).text() + '">' + $(this).text() + '</a><ul class="nav">';
             } else {

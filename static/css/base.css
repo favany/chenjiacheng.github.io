@@ -34,7 +34,7 @@ blockquote{background-color: #f5f5f5;font-size: 14px;}
 .sidebar .overview .btn-group .btn:active{box-shadow: none;}
 .sidebar .overview .btn-group .btn strong{display: block;font-size: 18px;}
 .sidebar .tab-content{overflow: auto;}
-.content{padding: 0 20px;border: 1px solid #fff;background-color: #fff;}
+.content{padding: 0 20px;border: 1px solid #fff;background-color: #fff;word-wrap: break-word;}
 .post-list .list-group-item{padding: 0 0 20px;border: none;border-bottom: 1px solid #eee;}
 .post-list .list-group-item h2{font-size: 20px;}
 .post-list .list-group-item h2 a{color: #333;}
@@ -67,6 +67,7 @@ blockquote{background-color: #f5f5f5;font-size: 14px;}
 .post-catalog-list .nav .nav > li > a{padding: 2px 0 2px 35px;}
 .post-catalog-list .nav .nav > li > a:before{left: 20px;width: 4px;height: 4px;}
 .read-progress{position: fixed;top: 0;left: 0;z-index: 2048;width: 0;height: 3px;background-color: #6190e8;}
+.back-to-top{display: none;width: 40px;height: 40px;line-height: 40px;background-color: #333;position: fixed;right: 1%;bottom: 40px;border-radius: 100%;text-align: center;color: #fff;opacity: 0.6;cursor: pointer;}
 
 @media (min-width: 1200px){
     .container{width: 1040px;}
