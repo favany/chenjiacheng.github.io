@@ -34,9 +34,9 @@ active: index
 </ul>
 <ul class="pager">
     {% if paginator.previous_page %}
-    <li><a href="{{ paginator.previous_page_path | prepend: site.baseurl }}">&larr;</a></li>
+    <li><a href="{{ paginator.previous_page_path | prepend: site.baseurl }}">&lt;</a></li>
     {% endif %}
     {% if paginator.next_page %}
-    <li><a href="{{ paginator.next_page_path | prepend: site.baseurl }}">&rarr;</a></li>
+    <li><a href="{{ paginator.next_page_path | prepend: site.baseurl }}">&gt;</a></li>
     {% endif %}
 </ul>
