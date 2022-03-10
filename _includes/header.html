@@ -20,7 +20,7 @@
                 <li class="{% if page.active == 'tags' %}active{% endif %}">
                     <a href="/tags"><span class="glyphicon glyphicon-tags"></span> 标签</a>
                 </li>
-                <li class="{% if page.active == 'qa' %}active{% endif %}">
+                <li class="{% if page.active == 'qa' %}active{% endif %}" style="display: none">
                     <a href="/qa"><span class="glyphicon glyphicon-question-sign"></span> 问答</a>
                 </li>
                 <li class="{% if page.active == 'about' %}active{% endif %}">
@@ -32,7 +32,7 @@
 </div>
 
 <script>
-    // 线上隐藏问答
-    let qa = document.querySelector("#navbar .nav li:nth-child(4)"); qa.style.display = 'none';
-    if (window.location.href.indexOf('127.0.0.1') !== -1) qa.style.display = 'block';
+    if (window.location.href.indexOf('127.0.0.1') !== -1) {
+        document.querySelector("#navbar .nav li:nth-child(4)").style.display = 'block';
+    }
 </script>
