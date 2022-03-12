@@ -295,8 +295,7 @@ hchan 中有两个与 buffer 相关的变量:recvx 和 sendx。其中 sendx 表�
 
 **饥饿模式(公平锁)**
 
-为了解决了等待 G 队列的长尾问题饥饿模式下，直接由 unlock 把锁交给等待队列中排在第一位的 G(队头)，同
-时，饥饿模式下，新进来的 G 不会参与抢锁也不会进入自旋状态，会直接进入等待队列的尾部,这样很好的解决了老的 g 一直抢不到锁的场景。
+为了解决了等待 G 队列的长尾问题饥饿模式下，直接由 unlock 把锁交给等待队列中排在第一位的 G(队头)，同时，饥饿模式下，新进来的 G 不会参与抢锁也不会进入自旋状态，会直接进入等待队列的尾部,这样很好的解决了老的 g 一直抢不到锁的场景。
 
 饥饿模式的触发条件，当一个 G 等待锁时间超过 1 毫秒时，或者当前队列只剩下一个 g 的时候，Mutex 切换到饥饿模式。
 
@@ -557,3 +556,397 @@ Go 在进行三色标记的时候并没有 STW，也就是说，此时的对象�
 * 控制内存分配的速度，限制 goroutine 的数量，从而提高赋值器对 CPU 的利用率。
 * 减少并复用内存，例如使用 sync.Pool 来复用需要频繁创建临时对象，例如提前分配足够的内存来降低多余的拷贝。
 * 需要时，增大 GOGC 的值，降低 GC 的运行频率。
+
+## 快问快答
+
+###  go 中除了加 Mutex 锁以外还有哪些方式安全读写共享变量？
+
+Go 中 Goroutine 可以通过 Channel 进行安全读写共享变量。
+
+### golang中new和make的区别？
+
+用new还是make？到底该如何选择？
+
+- make 仅用来分配及初始化类型为 slice、map、chan 的数据。
+- new 可分配任意类型的数据，根据传入的类型申请一块内存，返回指向这块内存的指针，即类型 *Type。
+- make 返回引用，即 Type，new 分配的空间被清零， make 分配空间后，会进行初始。
+
+### Go中对nil的Slice和空Slice的处理是一致的吗?
+
+首先Go的JSON 标准库对 nil slice 和 空 slice 的处理是不一致。
+
+- slice := make([]int,0）：slice不为nil，但是slice没有值，slice的底层的空间是空的。
+- slice := []int{} ：slice的值是nil，可用于需要返回slice的函数，当函数出现异常的时候，保证函数依然会有nil的返回值。
+
+### 协程和线程和进程的区别？
+
+并发掌握，goroutine和channel声明与使用！
+
+- 进程: 进程是具有一定独立功能的程序，进程是系统资源分配和调度的最小单位。每个进程都有自己的独立内存空间，不同进程通过进程间通信来通信。由于进程比较重量，占据独立的内存，所以上下文进程间的切换开销（栈、寄存器、虚拟内存、文件句柄等）比较大，但相对比较稳定安全。
+- 线程: 线程是进程的一个实体,线程是内核态,而且是CPU调度和分派的基本单位,它是比进程更小的能独立运行的基本单位。线程间通信主要通过共享内存，上下文切换很快，资源开销较少，但相比进程不够稳定容易丢失数据。
+- 协程: 协程是一种用户态的轻量级线程，协程的调度完全是由用户来控制的。协程拥有自己的寄存器上下文和栈。协程调度切换时，将寄存器上下文和栈保存到其他地方，在切回来的时候，恢复先前保存的寄存器上下文和栈，直接操作栈则基本没有内核切换的开销，可以不加锁的访问全局变量，所以上下文的切换非常快。
+
+### Golang的内存模型中为什么小对象多了会造成GC压力？
+
+通常小对象过多会导致GC三色法消耗过多的GPU。优化思路是，减少对象分配。
+
+### channel 为什么它可以做到线程安全？
+
+Channel 可以理解是一个先进先出的队列，通过管道进行通信,发送一个数据到Channel和从Channel接收一个数据都是原子性的。不要通过共享内存来通信，而是通过通信来共享内存，前者就是传统的加锁，后者就是Channel。设计Channel的主要目的就是在多任务间传递数据的，本身就是安全的。
+
+### GC 的触发条件？
+
+主动触发(手动触发)，通过调用 runtime.GC 来触发GC，此调用阻塞式地等待当前GC运行完毕。
+被动触发，分为两种方式：
+
+- 使用步调（Pacing）算法，其核心思想是控制内存增长的比例,每次内存分配时检查当前内存分配量是否已达到阈值（环境变量GOGC）：默认100%，即当内存扩大一倍时启用GC。
+- 使用系统监控，当超过两分钟没有产生任何GC时，强制触发 GC。
+
+### 怎么查看Goroutine的数量？怎么限制Goroutine的数量？
+
+- 在Golang中,GOMAXPROCS中控制的是未被阻塞的所有Goroutine,可以被 Multiplex 到多少个线程上运行,通过GOMAXPROCS可以查看Goroutine的数量。
+- 使用通道。每次执行的go之前向通道写入值，直到通道满的时候就阻塞了。
+
+### Channel是同步的还是异步的？
+
+Channel是异步进行的, channel存在3种状态：
+
+- nil，未初始化的状态，只进行了声明，或者手动赋值为nil
+- active，正常的channel，可读或者可写
+- closed，已关闭，千万不要误认为关闭channel后，channel的值是nil
+
+| 操作     | 一个零值nil通道 | 一个非零值但已关闭的通道 | 一个非零值且尚未关闭的通道 |
+| :------- | :-------------- | :----------------------- | :------------------------- |
+| 关闭     | 产生恐慌        | 产生恐慌                 | 成功关闭                   |
+| 发送数据 | 永久阻塞        | 产生恐慌                 | 阻塞或者成功发送           |
+| 接收数据 | 永久阻塞        | 永不阻塞                 | 阻塞或者成功接收           |
+
+### Goroutine和线程的区别？
+
+- 一个线程可以有多个协程
+- 线程、进程都是同步机制，而协程是异步
+- 协程可以保留上一次调用时的状态，当过程重入时，相当于进入了上一次的调用状态
+- 协程是需要线程来承载运行的，所以协程并不能取代线程，「线程是被分割的CPU资源，协程是组织好的代码流程」
+
+### Go的Struct能不能比较？
+
+- 相同struct类型的可以比较
+- 不同struct类型的不可以比较,编译都不过，类型不匹配
+
+### Go主协程如何等其余协程完再操作？
+
+使用sync.WaitGroup。WaitGroup，就是用来等待一组操作完成的。WaitGroup内部实现了一个计数器，用来记录未完成的操作个数。Add()用来添加计数；Done()用来在操作结束时调用，使计数减一；Wait()用来等待所有的操作结束，即计数变为0，该函数会在计数不为0时等待，在计数为0时立即返回。
+
+### Go的Slice如何扩容？
+
+**slice 实现原理**
+
+在使用 append 向 slice 追加元素时，若 slice 空间不足则会发生扩容，扩容会重新分配一块更大的内存，将原 slice 拷贝到新 slice ，然后返回新 slice。扩容后再将数据追加进去。
+
+扩容操作只对容量，扩容后的 slice 长度不变，容量变化规则如下：
+
+- 若 slice 容量小于1024个元素，那么扩容的时候slice的cap就翻番，乘以2；一旦元素个数超过1024个元素，增长因子就变成1.25，即每次增加原来容量的四分之一。
+- 若 slice 容量够用，则将新元素追加进去，slice.len++，返回原 slice
+- 若 slice 容量不够用，将 slice 先扩容，扩容得到新 slice，将新元素追加进新 slice，slice.len++，返回新 slice。
+
+### Go中的map如何实现顺序读取？
+
+Go中map如果要实现顺序读取的话，可以先把map中的key，通过sort包排序。
+
+### Go值接收者和指针接收者的区别？
+
+**究竟在什么情况下才使用指针？**
+
+**参数传递中，值、引用及指针之间的区别！**
+
+方法的接收者:
+
+- 值类型，既可以调用值接收者的方法，也可以调用指针接收者的方法；
+- 指针类型，既可以调用指针接收者的方法，也可以调用值接收者的方法。
+
+但是接口的实现，值类型接收者和指针类型接收者不一样：
+
+- 以值类型接收者实现接口，类型本身和该类型的指针类型，都实现了该接口；
+- 以指针类型接收者实现接口，只有对应的指针类型才被认为实现了接口。
+
+通常我们使用指针作为方法的接收者的理由：
+
+- 使用指针方法能够修改接收者指向的值。
+- 可以避免在每次调用方法时复制该值，在值的类型为大型结构体时，这样做会更加高效。
+
+### 在Go函数中为什么会发生内存泄露？
+
+Goroutine 需要维护执行用户代码的上下文信息，在运行过程中需要消耗一定的内存来保存这类信息，如果一个程序持续不断地产生新的 goroutine，且不结束已经创建的 goroutine 并复用这部分内存，就会造成内存泄漏的现象。
+
+### Goroutine发生了泄漏如何检测？
+
+可以通过Go自带的工具pprof或者使用Gops去检测诊断当前在系统上运行的Go进程的占用的资源。
+
+### Go中两个Nil可能不相等吗？
+
+Go中两个Nil可能不相等。
+
+接口(interface) 是对非接口值(例如指针，struct等)的封装，内部实现包含 2 个字段，类型 T 和 值 V。一个接口等于 nil，当且仅当 T 和 V 处于 unset 状态（T=nil，V is unset）。
+
+两个接口值比较时，会先比较 T，再比较 V。接口值与非接口值比较时，会先将非接口值尝试转换为接口值，再比较。
+
+```
+func main() {
+ var p *int = nil
+ var i interface{} = p
+ fmt.Println(i == p) // true
+ fmt.Println(p == nil) // true
+ fmt.Println(i == nil) // false
+}
+```
+
+- 例子中，将一个nil非接口值p赋值给接口i，此时,i的内部字段为(T=*int, V=nil)，i与p作比较时，将 p 转换为接口后再比较，因此 i == p，p 与 nil 比较，直接比较值，所以 p == nil。
+- 但是当 i 与nil比较时，会将nil转换为接口(T=nil, V=nil),与i(T=*int, V=nil)不相等，因此 i != nil。因此 V 为 nil ，但 T 不为 nil 的接口不等于 nil。
+
+### Go语言函数传参是值类型还是引用类型？
+
+- 在Go语言中只存在值传递，要么是值的副本，要么是指针的副本。无论是值类型的变量还是引用类型的变量亦或是指针类型的变量作为参数传递都会发生值拷贝，开辟新的内存空间。
+- 另外值传递、引用传递和值类型、引用类型是两个不同的概念，不要混淆了。引用类型作为变量传递可以影响到函数外部是因为发生值拷贝后新旧变量指向了相同的内存地址。
+
+### Go语言中的内存对齐了解吗？
+
+CPU 访问内存时，并不是逐个字节访问，而是以字长（word size）为单位访问。比如 32 位的 CPU ，字长为 4 字节，那么 CPU 访问内存的单位也是 4 字节。
+
+CPU 始终以字长访问内存，如果不进行内存对齐，很可能增加 CPU 访问内存的次数，例如：
+
+![06.png](Go.assets/06.jpg)
+
+变量 a、b 各占据 3 字节的空间，内存对齐后，a、b 占据 4 字节空间，CPU 读取 b 变量的值只需要进行一次内存访问。如果不进行内存对齐，CPU 读取 b 变量的值需要进行 2 次内存访问。第一次访问得到 b 变量的第 1 个字节，第二次访问得到 b 变量的后两个字节。
+
+也可以看到，内存对齐对实现变量的原子性操作也是有好处的，每次内存访问是原子的，如果变量的大小不超过字长，那么内存对齐后，对该变量的访问就是原子的，这个特性在并发场景下至关重要。
+
+简言之：合理的内存对齐可以提高内存读写的性能，并且便于实现变量操作的原子性。
+
+### 两个 interface 可以比较吗？
+
+- 判断类型是否一样
+
+reflect.TypeOf(a).Kind() == reflect.TypeOf(b).Kind()
+
+- 判断两个interface{}是否相等
+
+reflect.DeepEqual(a, b interface{})
+
+- 将一个interface{}赋值给另一个interface{}
+
+reflect.ValueOf(a).Elem().Set(reflect.ValueOf(b))
+
+### go 打印时 %v %+v %#v 的区别？
+
+- %v 只输出所有的值；
+- %+v 先输出字段名字，再输出该字段的值；
+- %#v 先输出结构体名字值，再输出结构体（字段名字+字段的值）；
+
+```
+package main
+import "fmt"
+
+type student struct {
+ id   int32
+ name string
+}
+
+func main() {
+ a := &student{id: 1, name: "微客鸟窝"}
+
+ fmt.Printf("a=%v \n", a) // a=&{1 微客鸟窝} 
+ fmt.Printf("a=%+v \n", a) // a=&{id:1 name:微客鸟窝} 
+ fmt.Printf("a=%#v \n", a) // a=&main.student{id:1, name:"微客鸟窝"}
+}
+```
+
+### 什么是 rune 类型？
+
+Go语言的字符有以下两种：
+
+- uint8 类型，或者叫 byte 型，代表了 ASCII 码的一个字符。
+- rune 类型，代表一个 UTF-8 字符，当需要处理中文、日文或者其他复合字符时，则需要用到 rune 类型。rune 类型等价于 int32 类型。
+
+```
+package main
+import "fmt"
+
+func main() {
+    var str = "hello 你好" //思考下 len(str) 的长度是多少？
+
+    //golang中string底层是通过byte数组实现的，直接求len 实际是在按字节长度计算  
+    //所以一个汉字占3个字节算了3个长度
+    fmt.Println("len(str):", len(str))  // len(str): 12
+
+    //通过rune类型处理unicode字符
+    fmt.Println("rune:", len([]rune(str))) //rune: 8
+}
+```
+
+### 空 struct{} 占用空间么？
+
+可以使用 unsafe.Sizeof 计算出一个数据类型实例需要占用的字节数:
+
+```
+package main
+
+import (
+ "fmt"
+ "unsafe"
+)
+
+func main() {
+ fmt.Println(unsafe.Sizeof(struct{}{}))  //0
+}
+```
+
+空结构体 struct{} 实例不占据任何的内存空间。
+
+### 空 struct{} 的用途？
+
+因为空结构体不占据内存空间，因此被广泛作为各种场景下的占位符使用。
+
+1. 将 map 作为集合(Set)使用时，可以将值类型定义为空结构体，仅作为占位符使用即可。
+
+```
+type Set map[string]struct{}
+
+func (s Set) Has(key string) bool {
+ _, ok := s[key]
+ return ok
+}
+
+func (s Set) Add(key string) {
+ s[key] = struct{}{}
+}
+
+func (s Set) Delete(key string) {
+ delete(s, key)
+}
+
+func main() {
+ s := make(Set)
+ s.Add("Tom")
+ s.Add("Sam")
+ fmt.Println(s.Has("Tom"))
+ fmt.Println(s.Has("Jack"))
+}
+```
+
+1. 不发送数据的信道(channel)
+   使用 channel 不需要发送任何的数据，只用来通知子协程(goroutine)执行任务，或只用来控制协程并发度。
+
+```
+func worker(ch chan struct{}) {
+ <-ch
+ fmt.Println("do something")
+ close(ch)
+}
+
+func main() {
+ ch := make(chan struct{})
+ go worker(ch)
+ ch <- struct{}{}
+}
+```
+
+1. 结构体只包含方法，不包含任何的字段
+
+```
+type Door struct{}
+
+func (d Door) Open() {
+ fmt.Println("Open the door")
+}
+
+func (d Door) Close() {
+ fmt.Println("Close the door")
+}
+```
+
+### 知道golang的内存逃逸吗？什么情况下会发生内存逃逸？
+
+**怎么答**
+
+`golang程序变量`会携带有一组校验数据，用来证明它的整个生命周期是否在运行时完全可知。如果变量通过了这些校验，它就可以在`栈上`分配。否则就说它 `逃逸` 了，必须在`堆上分配`。
+
+能引起变量逃逸到堆上的**典型情况**：
+
+- **在方法内把局部变量指针返回** 局部变量原本应该在栈中分配，在栈中回收。但是由于返回时被外部引用，因此其生命周期大于栈，则溢出。
+- **发送指针或带有指针的值到 channel 中。** 在编译时，是没有办法知道哪个 goroutine 会在 channel 上接收数据。所以编译器没法知道变量什么时候才会被释放。
+- **在一个切片上存储指针或带指针的值。** 一个典型的例子就是 []*string 。这会导致切片的内容逃逸。尽管其后面的数组可能是在栈上分配的，但其引用的值一定是在堆上。
+- **slice 的背后数组被重新分配了，因为 append 时可能会超出其容量( cap )。** slice 初始化的地方在编译时是可以知道的，它最开始会在栈上分配。如果切片背后的存储要基于运行时的数据进行扩充，就会在堆上分配。
+- **在 interface 类型上调用方法。** 在 interface 类型上调用方法都是动态调度的 —— 方法的真正实现只能在运行时知道。想像一个 io.Reader 类型的变量 r , 调用 r.Read(b) 会使得 r 的值和切片b 的背后存储都逃逸掉，所以会在堆上分配。
+
+**举例**
+
+- 通过一个例子加深理解，接下来尝试下怎么通过 `go build -gcflags=-m` 查看逃逸的情况。
+
+```go
+package main
+import "fmt"
+type A struct {
+ s string
+}
+// 这是上面提到的 "在方法内把局部变量指针返回" 的情况
+func foo(s string) *A {
+ a := new(A) 
+ a.s = s
+ return a //返回局部变量a,在C语言中妥妥野指针，但在go则ok，但a会逃逸到堆
+}
+func main() {
+ a := foo("hello")
+ b := a.s + " world"
+ c := b + "!"
+ fmt.Println(c)
+}
+```
+
+执行`go build -gcflags=-m main.go`
+
+```go
+go build -gcflags=-m main.go
+# command-line-arguments
+./main.go:7:6: can inline foo
+./main.go:13:10: inlining call to foo
+./main.go:16:13: inlining call to fmt.Println
+/var/folders/45/qx9lfw2s2zzgvhzg3mtzkwzc0000gn/T/go-build409982591/b001/_gomod_.go:6:6: can inline init.0
+./main.go:7:10: leaking param: s
+./main.go:8:10: new(A) escapes to heap
+./main.go:16:13: io.Writer(os.Stdout) escapes to heap
+./main.go:16:13: c escapes to heap
+./main.go:15:9: b + "!" escapes to heap
+./main.go:13:10: main new(A) does not escape
+./main.go:14:11: main a.s + " world" does not escape
+./main.go:16:13: main []interface {} literal does not escape
+<autogenerated>:1: os.(*File).close .this does not escape
+```
+
+- `./main.go:8:10: new(A) escapes to heap` 说明 `new(A)` 逃逸了,符合上述提到的常见情况中的第一种。
+- `./main.go:14:11: main a.s + " world" does not escape` 说明 `b` 变量没有逃逸，因为它只在方法内存在，会在方法结束时被回收。
+- `./main.go:15:9: b + "!" escapes to heap` 说明 `c` 变量逃逸，通过`fmt.Println(a ...interface{})`打印的变量，都会发生逃逸，感兴趣的朋友可以去查查为什么。
+- 以上操作其实就叫**逃逸分析**。
+
+### 竞态、内存逃逸
+
+并发控制，同步原语 sync 包
+
+**竞态**
+
+资源竞争，就是在程序中，同一块内存同时被多个 goroutine 访问。我们使用 go build、go run、go test 命令时，添加 -race 标识可以检查代码中是否存在资源竞争。
+
+解决这个问题，我们可以给资源进行加锁，让其在同一时刻只能被一个协程来操作。
+
+- sync.Mutex
+- sync.RWMutex
+
+**逃逸分析**
+
+「逃逸分析」就是程序运行时内存的分配位置(栈或堆)，是由编译器来确定的。堆适合不可预知大小的内存分配。但是为此付出的代价是分配速度较慢，而且会形成内存碎片。
+
+逃逸场景：
+
+- 指针逃逸
+- 栈空间不足逃逸
+- 动态类型逃逸
+- 闭包引用对象逃逸
